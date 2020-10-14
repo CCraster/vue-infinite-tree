@@ -1,0 +1,85 @@
+{
+  "name": "vue-infinite-tree",
+  "version": "0.0.1",
+  "private": true,
+  "description": "infinite tree based on vue2",
+  "author": {
+    "name": "Craster"
+  },
+  "scripts": {
+    "serve": "vue-cli-service serve",
+    "build": "vue-cli-service build",
+    "build:lib": "BUILD_LIB=true vue-cli-service build --target lib --name vue-infinite-tree src/components/index.js",
+    "lint": "vue-cli-service lint",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "fix": "eslint 'src/**/*.@(vue|js|mjs|jsx)' --fix && prettier 'src/**/*.@(c|le|sc)ss' --write",
+    "publish": "git push --follow-tags origin master && npm publish",
+    "release-major": "standard-version -r major",
+    "release-minor": "standard-version -r minor",
+    "release-patch": "standard-version -r patch",
+    "release-alpha": "standard-version -p alpha"
+  },
+  "main": "index.js",
+  "dependencies": {
+    "core-js": "^3.6.5",
+    "vue": "^2.6.11"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^11.0.0",
+    "@commitlint/config-conventional": "^11.0.0",
+    "@vue/cli-plugin-babel": "~4.5.0",
+    "@vue/cli-plugin-eslint": "~4.5.0",
+    "@vue/cli-service": "~4.5.0",
+    "@vue/eslint-config-prettier": "^6.0.0",
+    "babel-eslint": "^10.1.0",
+    "eslint": "^6.8.0",
+    "eslint-config-prettier": "^6.12.0",
+    "eslint-config-standard": "^14.1.1",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-prettier": "^3.1.4",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-standard": "^4.0.1",
+    "eslint-plugin-vue": "^6.2.2",
+    "husky": "^4.3.0",
+    "less": "^3.12.2",
+    "less-loader": "^7.0.2",
+    "lint-staged": "^10.4.0",
+    "prettier": "^2.1.2",
+    "pretty-quick": "^3.0.2",
+    "standard-version": "^9.0.0",
+    "vue-template-compiler": "^2.6.11"
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not dead"
+  ],
+  "_id": "vue-infinite-tree@0.0.1",
+  "bugs": {
+    "url": "https://github.com/CCraster/vue-infinite-tree/issues"
+  },
+  "homepage": "https://github.com/CCraster/vue-infinite-tree#readme",
+  "keywords": [
+    "infinite-tree",
+    "vue"
+  ],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CCraster/vue-infinite-tree.git"
+  },
+  "husky": {
+    "hooks": {
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS",
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{js,jsx,vue}": [
+      "eslint --fix",
+      "git add"
+    ],
+    "*": "pretty-quick --staged"
+  }
+}
