@@ -1,4 +1,5 @@
 import InfiniteTree from './InfiniteTree.vue'
+// import './styles/index.scss'
 
 // 给Vue.use用
 export function install(Vue) {

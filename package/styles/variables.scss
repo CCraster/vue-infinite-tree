@@ -1,0 +1,19 @@
+/**
+* CSS变量定义
+*/
+$__color-gray-0: #000000 !default;
+$__color-gray-1: #303133 !default;
+$__color-gray-2: #606266 !default;
+$__color-gray-3: #909399 !default;
+$__color-gray-4: #c0c4cc !default;
+$__color-gray-5: #dcdfe6 !default;
+$__color-gray-6: #e4e7ed !default;
+$__color-gray-7: #ebeef5 !default;
+$__color-gray-8: #f2f6fc !default;
+
+$--color-primary: #ff6633 !default; // 主色彩
+$--color-text: $__color-gray-1; // 文字颜色
+$--color-gray-line: $__color-gray-6; // 灰色线条色
+$--transition-time_comm: 0.2s; // 动画时间-通用
+$--transition-time_emphasize: 0.4s; // 动画时间-强调
+$--border-radius-comm: 2px;

@@ -1,0 +1,100 @@
+/**
+* vit style
+*/
+@import '~@fortawesome/fontawesome-free/css/all.css';
+@import './variables.scss';
+
+.vit-wrapper {
+  height: 400px;
+  width: 100%;
+  outline: none;
+  overflow: scroll;
+  color: $--color-text;
+  font-size: 16px;
+  &,
+  * {
+    box-sizing: border-box;
+  }
+}
+
+$--icon-width: 24px;
+$--icon-pm: 6px; // icon的padding、margin
+.vit-node-wrapper {
+  position: absolute;
+  width: 100%;
+  // max-width: 40%;
+  min-height: 28px;
+  display: flex;
+  align-items: center;
+  // white-space: nowrap;
+  transition: transform $--transition-time_comm;
+  background-color: #fff;
+
+  // vit节点是否展开图标
+  .vit-node-arrow {
+    flex-shrink: 0;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    height: $--icon-width;
+    width: $--icon-width;
+    padding: $--icon-pm;
+    transition: transform $--transition-time_comm;
+    color: #333333bf;
+    cursor: pointer;
+    &.collapsed {
+      transform: rotate(90deg);
+    }
+  }
+
+  .vit-node-checkbox {
+    width: $--icon-width - $--icon-pm;
+    height: $--icon-width - $--icon-pm;
+    flex-shrink: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    background-color: #fff;
+    border: 1px solid $--color-gray-line;
+    margin: $--icon-pm / 2 $--icon-pm $--icon-pm / 2 0;
+    border-radius: 2px;
+    transition: border $--transition-time_emphasize;
+    &:hover,
+    &:active {
+      border-color: $--color-primary;
+    }
+    &::after {
+      border-radius: 2px;
+      width: 0px;
+      height: 0px;
+      content: '';
+      background-color: $--color-primary;
+      transition: all $--transition-time_comm
+        cubic-bezier(0.12, 0.4, 0.29, 1.46);
+    }
+
+    &.checked {
+      &::after {
+        width: 10px;
+        height: 10px;
+      }
+    }
+  }
+
+  // vit node内容区域wrapper
+  .vit-node-content {
+    word-break: break-word;
+    cursor: pointer;
+    padding: 2px 4px;
+    border-radius: $--border-radius-comm;
+    transition: all $--transition-time_emphasize;
+    &:hover {
+      background-color: $--color-gray-line;
+    }
+    &.vit-node-focus {
+      background-color: lighten($--color-primary, 20%);
+      color: #fff;
+    }
+  }
+}

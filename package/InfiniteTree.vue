@@ -1,12 +1,17 @@
 <template>
-  <div class="vit-wrapper" :style="{}" @scroll="onScroll">
+  <div
+    id="vit-wrapper"
+    ref="vit-wrapper"
+    class="vit-wrapper"
+    tabindex="0"
+    :style="{}"
+    @scroll="onScroll"
+  >
     <div
       :style="{
         position: 'relative',
-        height: totalNodeList.length * 22 + 'px'
+        height: totalNodeList.length * treeNodeHeight + 'px'
       }"
-      @mouseenter="handleMouseEnter(true)"
-      @mouseleave="handleMouseEnter(false)"
     >
       <tree-node
         v-for="(node, index) in shouldRenderNodeList"
@@ -25,13 +30,14 @@
 </template>
 
 <script>
+import './styles/index.scss'
 import TreeNode from './TreeNode'
 import {
   treeJson2List,
   getValueFromPath,
   setChildrenStatus,
   checkAncestorStatus
-} from '@/utils'
+} from './utils'
 import { generateTreeNode } from '@/utils/dataMock.js'
 
 export default {
@@ -47,15 +53,15 @@ export default {
   },
   data() {
     return {
-      shouldRenderNodeList: [],
+      shouldRenderNodeList: [], // 需要渲染的节点数组
       renderNodePosRange: [0, 100], // 记录需要渲染的节点的下标最小&最大值
-      focusNode: null,
-      isTreeFocus: false,
-      tabSize: 16, // tree缩进px
-      treeNodeHeight: 22 // 树节点高度
+      focusNode: null, // 处于「操作状态」的节点
+      tabSize: 24, // tree缩进px
+      treeNodeHeight: 28 // 树节点高度
     }
   },
   computed: {
+    // vit节点总数：渲染 + 未渲染
     totalNodeNum() {
       return this.totalNodeList.length
     }
@@ -79,19 +85,27 @@ export default {
     }
   },
   mounted() {
-    window.addEventListener('keyup', this.handleKeyUp)
+    this.$refs['vit-wrapper'].addEventListener('keyup', this.handleKeyUp)
+    this.$refs['vit-wrapper'].addEventListener('keydown', e => {
+      e.preventDefault() // 防止tab键触发默认切换焦点元素动作
+    })
   },
   beforeDestroy() {
-    window.removeEventListener('keyup', this.handleKeyUp)
+    this.$refs['vit-wrapper'].removeEventListener('keyup', this.handleKeyUp)
   },
   methods: {
     makeNewTreeData() {
       this._treeData = [...this._treeData]
       this.$emit('input', this._treeData)
     },
+    // 判断vit是否处于聚焦状态
+    isTreeFocus() {
+      return document.activeElement?.id === 'vit-wrapper'
+    },
+    // vit滚动时计算应该显示的元素下标
     onScroll(e) {
       const config = {
-        nodeHeight: 22, // 节点高度
+        nodeHeight: this.treeNodeHeight, // 节点高度
         visibleOffset: 2 // 视窗上下visibleOffset个高度的节点渲染
       }
       let scrollTop = e.target.scrollTop,
@@ -110,6 +124,7 @@ export default {
         Math.ceil(endVisiblePos / config.nodeHeight)
       ]
     },
+    // 得出应该渲染的元素数组
     computeShouldRenderNodeList() {
       if (this.renderNodePosRange.length === 2) {
         // this.shouldRenderNodeList = this.totalNodeList.slice(
@@ -127,12 +142,9 @@ export default {
         this.shouldRenderNodeList = this.totalNodeList
       }
     },
-    handleMouseEnter(isFocus) {
-      this.isTreeFocus = isFocus
-    },
     // 处理按键事件
     handleKeyUp(e) {
-      if (!this.isTreeFocus || !this.focusNode) return
+      if (!this.isTreeFocus() || !this.focusNode) return
 
       // 删除节点 - backspace
       if (e.keyCode === 8) {
@@ -150,6 +162,7 @@ export default {
         this.handleAddBrotherNode(this.focusNode.path)
       }
     },
+    // 设置当前处于「操作状态」节点
     handleSetFocusNode(node) {
       this.focusNode = node
     },
@@ -195,12 +208,3 @@ export default {
   }
 }
 </script>
-
-<style lang="less" scoped>
-.vit-wrapper {
-  height: 400px;
-  width: 100%;
-  overflow: scroll;
-  border: 1px solid #f67505;
-}
-</style>

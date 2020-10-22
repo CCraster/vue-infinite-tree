@@ -1,0 +1,6 @@
+/**
+* 测试覆盖vit颜色变量
+*/
+$--color-primary: red;
+
+@import '../package/styles/index.scss';
