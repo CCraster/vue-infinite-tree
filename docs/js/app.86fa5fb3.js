@@ -1,58 +1,58 @@
 ;(function (e) {
   function t(t) {
     for (
-      var o, r, s = t[0], d = t[1], c = t[2], l = 0, h = [];
-      l < s.length;
-      l++
+      var o, a, s = t[0], d = t[1], c = t[2], u = 0, h = [];
+      u < s.length;
+      u++
     )
-      (r = s[l]),
-        Object.prototype.hasOwnProperty.call(a, r) && a[r] && h.push(a[r][0]),
-        (a[r] = 0)
+      (a = s[u]),
+        Object.prototype.hasOwnProperty.call(i, a) && i[a] && h.push(i[a][0]),
+        (i[a] = 0)
     for (o in d) Object.prototype.hasOwnProperty.call(d, o) && (e[o] = d[o])
-    u && u(t)
+    l && l(t)
     while (h.length) h.shift()()
-    return i.push.apply(i, c || []), n()
+    return r.push.apply(r, c || []), n()
   }
   function n() {
-    for (var e, t = 0; t < i.length; t++) {
-      for (var n = i[t], o = !0, s = 1; s < n.length; s++) {
+    for (var e, t = 0; t < r.length; t++) {
+      for (var n = r[t], o = !0, s = 1; s < n.length; s++) {
         var d = n[s]
-        0 !== a[d] && (o = !1)
+        0 !== i[d] && (o = !1)
       }
-      o && (i.splice(t--, 1), (e = r((r.s = n[0]))))
+      o && (r.splice(t--, 1), (e = a((a.s = n[0]))))
     }
     return e
   }
   var o = {},
-    a = { app: 0 },
-    i = []
-  function r(t) {
+    i = { app: 0 },
+    r = []
+  function a(t) {
     if (o[t]) return o[t].exports
     var n = (o[t] = { i: t, l: !1, exports: {} })
-    return e[t].call(n.exports, n, n.exports, r), (n.l = !0), n.exports
+    return e[t].call(n.exports, n, n.exports, a), (n.l = !0), n.exports
   }
-  ;(r.m = e),
-    (r.c = o),
-    (r.d = function (e, t, n) {
-      r.o(e, t) || Object.defineProperty(e, t, { enumerable: !0, get: n })
+  ;(a.m = e),
+    (a.c = o),
+    (a.d = function (e, t, n) {
+      a.o(e, t) || Object.defineProperty(e, t, { enumerable: !0, get: n })
     }),
-    (r.r = function (e) {
+    (a.r = function (e) {
       'undefined' !== typeof Symbol &&
         Symbol.toStringTag &&
         Object.defineProperty(e, Symbol.toStringTag, { value: 'Module' }),
         Object.defineProperty(e, '__esModule', { value: !0 })
     }),
-    (r.t = function (e, t) {
-      if ((1 & t && (e = r(e)), 8 & t)) return e
+    (a.t = function (e, t) {
+      if ((1 & t && (e = a(e)), 8 & t)) return e
       if (4 & t && 'object' === typeof e && e && e.__esModule) return e
       var n = Object.create(null)
       if (
-        (r.r(n),
+        (a.r(n),
         Object.defineProperty(n, 'default', { enumerable: !0, value: e }),
         2 & t && 'string' != typeof e)
       )
         for (var o in e)
-          r.d(
+          a.d(
             n,
             o,
             function (t) {
@@ -61,7 +61,7 @@
           )
       return n
     }),
-    (r.n = function (e) {
+    (a.n = function (e) {
       var t =
         e && e.__esModule
           ? function () {
@@ -70,37 +70,36 @@
           : function () {
               return e
             }
-      return r.d(t, 'a', t), t
+      return a.d(t, 'a', t), t
     }),
-    (r.o = function (e, t) {
+    (a.o = function (e, t) {
       return Object.prototype.hasOwnProperty.call(e, t)
     }),
-    (r.p = '/vue-infinite-tree/')
+    (a.p = '/vue-infinite-tree/')
   var s = (window['webpackJsonp'] = window['webpackJsonp'] || []),
     d = s.push.bind(s)
   ;(s.push = t), (s = s.slice())
   for (var c = 0; c < s.length; c++) t(s[c])
-  var u = d
-  i.push([0, 'chunk-vendors']), n()
+  var l = d
+  r.push([0, 'chunk-vendors']), n()
 })({
   0: function (e, t, n) {
     e.exports = n('56d7')
   },
-  '0a17': function (e, t, n) {},
   2395: function (e, t, n) {},
-  '2af9': function (e, t, n) {
+  3772: function (e, t, n) {
     'use strict'
     ;(function (e) {
       n('b0c0')
-      var o = n('a93c')
-      function a(e) {
-        a.installed || ((a.installed = !0), e.component(o['a'].name, o['a']))
+      var o = n('7081')
+      function i(e) {
+        i.installed || ((i.installed = !0), e.component(o['a'].name, o['a']))
       }
-      var i = null
+      var r = null
       'undefined' !== typeof window
-        ? (i = window.Vue)
-        : 'undefined' !== typeof e && (i = e.Vue),
-        i && i.use({ install: a }),
+        ? (r = window.Vue)
+        : 'undefined' !== typeof e && (r = e.Vue),
+        r && r.use({ install: i }),
         (t['a'] = o['a'])
     }.call(this, n('c8ba')))
   },
@@ -109,21 +108,21 @@
     n.r(t)
     n('e260'), n('e6cf'), n('cca6'), n('a79d')
     var o = n('2b0e'),
-      a = function () {
+      i = function () {
         var e = this,
           t = e.$createElement,
           n = e._self._c || t
         return n('div', { attrs: { id: 'app' } }, [
           n('div', { staticClass: 'logo-wrapper' }, [
-            e._v('Vue Infinite Tree')
+            n('img', { attrs: { src: e.logo } })
           ]),
           n(
             'div',
             { staticClass: 'main-wrapper' },
             [
-              n('div', { staticClass: 'config-panel' }, [e._v('config')]),
+              e._m(0),
               n('infinite-tree', {
-                staticClass: 'inf-tree',
+                staticClass: 'infinite-tree',
                 model: {
                   value: e.treeData,
                   callback: function (t) {
@@ -131,44 +130,56 @@
                   },
                   expression: 'treeData'
                 }
-              })
+              }),
+              n('div', { staticClass: 'tree-preview' }, [
+                e._v(e._s(e.treePreviewData))
+              ])
             ],
             1
           )
         ])
       },
-      i = [],
-      r = n('2af9'),
-      s = n('df9c'),
-      d = {
+      r = [
+        function () {
+          var e = this,
+            t = e.$createElement,
+            n = e._self._c || t
+          return n('div', { staticClass: 'config-panel' }, [
+            n('span', [e._v('dsds')])
+          ])
+        }
+      ],
+      a = n('df9c'),
+      s = n('9b19'),
+      d = n.n(s),
+      c = n('3772'),
+      l = {
         name: 'App',
-        components: { InfiniteTree: r['a'] },
+        components: { InfiniteTree: c['a'] },
         data: function () {
-          return { treeData: [] }
+          return { logo: d.a, treeData: [] }
+        },
+        computed: {
+          treePreviewData: function () {
+            return JSON.stringify(this.treeData, !1, 2)
+          }
         },
         mounted: function () {
-          this.treeData = Object(s['a'])(5, 3)
+          this.treeData = Object(a['a'])(1e3, 3)
         }
       },
-      c = d,
-      u = (n('7c55'), n('2877')),
-      l = Object(u['a'])(c, a, i, !1, null, null, null),
-      h = l.exports
+      u = l,
+      h = (n('7c55'), n('2877')),
+      f = Object(h['a'])(u, i, r, !1, null, null, null),
+      p = f.exports
     ;(o['a'].config.productionTip = !1),
       new o['a']({
         render: function (e) {
-          return e(h)
+          return e(p)
         }
       }).$mount('#app')
   },
-  '76c3': function (e, t, n) {},
-  '7c55': function (e, t, n) {
-    'use strict'
-    var o = n('2395'),
-      a = n.n(o)
-    a.a
-  },
-  a93c: function (e, t, n) {
+  7081: function (e, t, n) {
     'use strict'
     var o = function () {
         var e = this,
@@ -176,22 +187,20 @@
           n = e._self._c || t
         return n(
           'div',
-          { staticClass: 'vit-wrapper', style: {}, on: { scroll: e.onScroll } },
+          {
+            ref: 'vit-wrapper',
+            staticClass: 'vit-wrapper',
+            style: {},
+            attrs: { id: 'vit-wrapper', tabindex: '0' },
+            on: { scroll: e.onScroll }
+          },
           [
             n(
               'div',
               {
                 style: {
                   position: 'relative',
-                  height: 22 * e.totalNodeList.length + 'px'
-                },
-                on: {
-                  mouseenter: function (t) {
-                    return e.handleMouseEnter(!0)
-                  },
-                  mouseleave: function (t) {
-                    return e.handleMouseEnter(!1)
-                  }
+                  height: e.totalNodeList.length * e.treeNodeHeight + 'px'
                 }
               },
               e._l(e.shouldRenderNodeList, function (t, o) {
@@ -217,65 +226,59 @@
           ]
         )
       },
-      a = [],
-      i = (n('fb6a'), n('a434'), n('b0c0'), n('2909')),
-      r = function () {
-        var e = this,
-          t = e.$createElement,
-          n = e._self._c || t
-        return n(
-          'div',
-          {
-            staticClass: 'node-wrapper',
-            class: { 'node-focus': e.isNodeFocus },
-            style: e.nodeStyle,
-            on: { click: e.onNodeClick }
-          },
-          [
-            n('span', {
-              staticClass: 'check-box',
-              class: { checked: e.treeNode.state.selected },
-              on: {
-                click: function (t) {
-                  return t.stopPropagation(), e.onSelectNode(t)
-                }
-              }
-            }),
-            n('span', {
-              class: {
-                'el-icon-folder-remove':
-                  !e.treeNode.isLeaf && e.treeNode.state.opened,
-                'el-icon-folder-add':
-                  !e.treeNode.isLeaf && !e.treeNode.state.opened,
-                'el-icon-price-tag': e.treeNode.isLeaf
-              },
-              style: {
-                marginRight: '4px',
-                transform: e.treeNode.isLeaf ? 'rotate(0.5turn)' : 'none'
-              },
-              on: {
-                click: function (t) {
-                  return t.stopPropagation(), e.onNodeOpenClick(t)
-                }
-              }
-            }),
-            n(
-              'span',
-              {
-                class: {},
-                attrs: { contenteditable: '' },
+      i = [],
+      r = (n('fb6a'), n('a434'), n('b0c0'), n('2909')),
+      a =
+        (n('f294'),
+        function () {
+          var e = this,
+            t = e.$createElement,
+            n = e._self._c || t
+          return n(
+            'div',
+            {
+              staticClass: 'vit-node-wrapper',
+              style: e.nodeStyle,
+              attrs: { draggable: '' }
+            },
+            [
+              n('span', {
+                staticClass: 'vit-node-arrow',
+                class: {
+                  'fa fa-angle-right': !e.treeNode.isLeaf,
+                  collapsed: !e.treeNode.isLeaf && e.treeNode.state.opened
+                },
                 on: {
-                  click: function (e) {
-                    e.stopPropagation()
-                  },
-                  blur: e.onNodeBlur
+                  click: function (t) {
+                    return t.stopPropagation(), e.onNodeOpenClick(t)
+                  }
                 }
-              },
-              [e._v(e._s(e.treeNode.name))]
-            )
-          ]
-        )
-      },
+              }),
+              n('span', {
+                staticClass: 'vit-node-checkbox',
+                class: { checked: e.treeNode.state.selected },
+                on: {
+                  click: function (t) {
+                    return t.stopPropagation(), e.onSelectNode(t)
+                  }
+                }
+              }),
+              n(
+                'span',
+                {
+                  staticClass: 'vit-node-content',
+                  class: { 'vit-node-focus': e.isNodeFocus },
+                  on: { click: e.onNodeClick }
+                },
+                [
+                  n('span', { on: { blur: e.onNodeBlur } }, [
+                    e._v(e._s(e.treeNode.name))
+                  ])
+                ]
+              )
+            ]
+          )
+        }),
       s = [],
       d =
         (n('13d5'),
@@ -331,9 +334,9 @@
           }
         }),
       c = d,
-      u = (n('c156'), n('2877')),
-      l = Object(u['a'])(c, r, s, !1, null, '271e173d', null),
-      h = l.exports,
+      l = n('2877'),
+      u = Object(l['a'])(c, a, s, !1, null, null, null),
+      h = u.exports,
       f = (n('99af'), n('4160'), n('159b'), n('5530')),
       p = function (e, t) {
         var n = e
@@ -348,19 +351,19 @@
         Date.now()
         var t = [],
           n = function e(n, o) {
-            n.forEach(function (n, a) {
-              var r = n.id,
+            n.forEach(function (n, i) {
+              var a = n.id,
                 s = n.name,
                 d = n.state,
                 c = {
-                  id: r,
+                  id: a,
                   name: s,
                   state: d,
-                  path: [].concat(Object(i['a'])(o), [a])
+                  path: [].concat(Object(r['a'])(o), [i])
                 }
               n.children.length > 0 && d.opened
                 ? (t.push(c),
-                  e(n.children, [].concat(Object(i['a'])(o), [a, 'children'])))
+                  e(n.children, [].concat(Object(r['a'])(o), [i, 'children'])))
                 : n.children.length > 0 && !d.opened
                 ? t.push(c)
                 : t.push(
@@ -380,21 +383,21 @@
       },
       m = function (e, t, n) {
         Date.now()
-        for (var o = t.length, a = o; a > 0; a--) {
-          var i = p(e, t.slice(0, a))
-          if (!Array.isArray(i)) {
+        for (var o = t.length, i = o; i > 0; i--) {
+          var r = p(e, t.slice(0, i))
+          if (!Array.isArray(r)) {
             if (
-              !i.children[n ? 'every' : 'some'](function (e) {
+              !r.children[n ? 'every' : 'some'](function (e) {
                 return e.state.selected === n
               })
             )
               break
-            i.state.selected = n
+            r.state.selected = n
           }
         }
       },
-      b = n('df9c'),
-      g = {
+      g = n('df9c'),
+      b = {
         name: 'InfiniteTree',
         props: {
           value: {
@@ -410,9 +413,8 @@
             shouldRenderNodeList: [],
             renderNodePosRange: [0, 100],
             focusNode: null,
-            isTreeFocus: !1,
-            tabSize: 16,
-            treeNodeHeight: 22
+            tabSize: 24,
+            treeNodeHeight: 28
           }
         },
         computed: {
@@ -436,31 +438,46 @@
           }
         },
         mounted: function () {
-          window.addEventListener('keyup', this.handleKeyUp)
+          this.$refs['vit-wrapper'].addEventListener('keyup', this.handleKeyUp),
+            this.$refs['vit-wrapper'].addEventListener('keydown', function (e) {
+              e.preventDefault()
+            })
         },
         beforeDestroy: function () {
-          window.removeEventListener('keyup', this.handleKeyUp)
+          this.$refs['vit-wrapper'].removeEventListener(
+            'keyup',
+            this.handleKeyUp
+          )
         },
         methods: {
           makeNewTreeData: function () {
-            ;(this._treeData = Object(i['a'])(this._treeData)),
+            ;(this._treeData = Object(r['a'])(this._treeData)),
               this.$emit('input', this._treeData)
           },
+          isTreeFocus: function () {
+            var e
+            return (
+              'vit-wrapper' ===
+              (null === (e = document.activeElement) || void 0 === e
+                ? void 0
+                : e.id)
+            )
+          },
           onScroll: function (e) {
-            var t = { nodeHeight: 22, visibleOffset: 2 },
+            var t = { nodeHeight: this.treeNodeHeight, visibleOffset: 2 },
               n = e.target.scrollTop,
               o = e.target.clientHeight
             if (0 === n || n) {
-              var a = n - o * t.visibleOffset,
-                i = n + o * (t.visibleOffset + 1)
-              ;(a = a > 0 ? a : 0),
-                (i =
-                  i < t.nodeHeight * this.totalNodeNum
-                    ? i
+              var i = n - o * t.visibleOffset,
+                r = n + o * (t.visibleOffset + 1)
+              ;(i = i > 0 ? i : 0),
+                (r =
+                  r < t.nodeHeight * this.totalNodeNum
+                    ? r
                     : t.nodeHeight * this.totalNodeNum),
                 (this.renderNodePosRange = [
-                  Math.floor(a / t.nodeHeight),
-                  Math.ceil(i / t.nodeHeight)
+                  Math.floor(i / t.nodeHeight),
+                  Math.ceil(r / t.nodeHeight)
                 ])
             }
           },
@@ -470,7 +487,7 @@
               ? ((this.shouldRenderNodeList.length = 0),
                 (e = this.shouldRenderNodeList).push.apply(
                   e,
-                  Object(i['a'])(
+                  Object(r['a'])(
                     this.totalNodeList.slice(
                       this.renderNodePosRange[0],
                       this.renderNodePosRange[1]
@@ -479,11 +496,8 @@
                 ))
               : (this.shouldRenderNodeList = this.totalNodeList)
           },
-          handleMouseEnter: function (e) {
-            this.isTreeFocus = e
-          },
           handleKeyUp: function (e) {
-            this.isTreeFocus &&
+            this.isTreeFocus() &&
               this.focusNode &&
               (8 === e.keyCode &&
                 (this.handleDeleteNode(this.focusNode.path),
@@ -498,12 +512,12 @@
           handleAddBrotherNode: function (e) {
             var t = p(this._treeData, e.slice(0, -1)),
               n = e[e.length - 1]
-            t.splice(n + 1, 0, Object(b['b'])('new node')),
+            t.splice(n + 1, 0, Object(g['b'])('new node')),
               this.makeNewTreeData()
           },
           handleAddChildrenNode: function (e) {
             var t = p(this._treeData, e)
-            t.children.unshift(Object(b['b'])('new node')),
+            t.children.unshift(Object(g['b'])('new node')),
               this.makeNewTreeData()
           },
           handleDeleteNode: function (e) {
@@ -527,52 +541,50 @@
           }
         }
       },
-      y = g,
-      w = (n('fb05'), Object(u['a'])(y, o, a, !1, null, '26f08982', null))
+      y = b,
+      w = Object(l['a'])(y, o, i, !1, null, null, null)
     t['a'] = w.exports
   },
-  c156: function (e, t, n) {
+  '7c55': function (e, t, n) {
     'use strict'
-    var o = n('0a17'),
-      a = n.n(o)
-    a.a
+    var o = n('2395'),
+      i = n.n(o)
+    i.a
+  },
+  '9b19': function (e, t, n) {
+    e.exports = n.p + 'img/logo.54e62cae.svg'
   },
   df9c: function (e, t, n) {
     'use strict'
     n.d(t, 'b', function () {
-      return i
+      return r
     }),
       n.d(t, 'a', function () {
-        return r
+        return a
       })
     n('cb29'), n('d81d')
     var o = n('11c1'),
-      a = n.n(o),
-      i = function (e) {
+      i = n.n(o),
+      r = function (e) {
         return {
-          id: a()(),
+          id: i()(),
           name: e || Math.random(0, 255),
           state: { opened: !0, disabled: !1, selected: !1 },
           children: []
         }
       },
-      r = function (e, t) {
+      a = function (e, t) {
         Date.now()
         for (var n = [], o = 0; o < e; o++) {
-          var a = Math.floor(Math.random() * (t + 1)),
-            r = i()
-          ;(r.children = new Array(a).fill(0).map(function () {
-            return i()
+          var i = Math.floor(Math.random() * (t + 1)),
+            a = r()
+          ;(a.children = new Array(i).fill(0).map(function () {
+            return r()
           })),
-            n.push(r)
+            n.push(a)
         }
         return n
       }
   },
-  fb05: function (e, t, n) {
-    'use strict'
-    var o = n('76c3'),
-      a = n.n(o)
-    a.a
-  }
+  f294: function (e, t, n) {}
 })
