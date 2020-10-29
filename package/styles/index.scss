@@ -70,7 +70,7 @@ $--icon-pm: 6px; // icon的padding、margin
       height: 0px;
       content: '';
       background-color: $--color-primary;
-      transition: all $--transition-time_comm
+      transition: all $--transition-time_emphasize
         cubic-bezier(0.12, 0.4, 0.29, 1.46);
     }
 
