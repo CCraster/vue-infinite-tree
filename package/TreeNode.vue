@@ -14,6 +14,7 @@
         checked: treeNode.state.selected
       }"
       @click.stop="onSelectNode"
+      v-if="checkable"
     ></span>
     <span
       class="vit-node-content"
@@ -45,6 +46,11 @@ export default {
     },
     // 节点是否在聚焦
     isNodeFocus: {
+      type: Boolean,
+      default: false
+    },
+    // 是否能够复选
+    checkable: {
       type: Boolean,
       default: false
     }

@@ -1,16 +1,22 @@
-<svg width="200" height="150" xmlns="http://www.w3.org/2000/svg">
+<svg width="400" height="400" xmlns="http://www.w3.org/2000/svg">
  <!-- Created with Method Draw - http://github.com/duopixel/Method-Draw/ -->
+ <defs>
+  <linearGradient id="svg_2" x1="0" y1="0" x2="1" y2="1">
+   <stop stop-color="#2c3e50" offset="0"/>
+   <stop stop-color="#ff6633" offset="1"/>
+  </linearGradient>
+ </defs>
  <g>
   <title>background</title>
-  <rect fill="none" id="canvas_background" height="152" width="202" y="-1" x="-1"/>
-  <g display="none" overflow="visible" y="0" x="0" height="100%" width="100%" id="canvasGrid">
-   <rect fill="url(#gridpattern)" stroke-width="0" y="0" x="0" height="100%" width="100%"/>
+  <rect x="-1" y="-1" width="402" height="402" id="canvas_background" fill="url(#svg_2)"/>
+  <g id="canvasGrid" display="none">
+   <rect id="svg_1" width="100%" height="100%" x="0" y="0" stroke-width="0" fill="url(#gridpattern)"/>
   </g>
  </g>
  <g>
   <title>Layer 1</title>
-  <text font-weight="bold" xml:space="preserve" text-anchor="start" font-family="'Trebuchet MS', Gadget, sans-serif" font-size="30" id="svg_1" y="43.5" x="93.289063" stroke-width="2" stroke="#000" fill="#000000">Vue</text>
-  <text font-weight="bold" xml:space="preserve" text-anchor="start" font-family="'Trebuchet MS', Gadget, sans-serif" font-size="30" id="svg_2" y="86.5" x="45" stroke-width="2" stroke="#000" fill="#000000">Infinite</text>
-  <text font-weight="bold" xml:space="preserve" text-anchor="start" font-family="'Trebuchet MS', Gadget, sans-serif" font-size="30" id="svg_3" y="128.5" x="81.25" stroke-width="2" stroke="#000" fill="#000000">Tree</text>
+  <text transform="rotate(-45 94.85014343261719,78.73438262939452) " xml:space="preserve" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="100" id="svg_3" y="113.735754" x="7.727164" stroke-width="0" stroke="#ff6633" fill="#ffffff">Vue</text>
+  <text transform="rotate(-45 197.59019470214838,200.55612182617188) " stroke="#ff6633" xml:space="preserve" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="140" id="svg_5" y="249.190364" x="-8.636479" stroke-width="0" fill="#ffffff">Infinite</text>
+  <text transform="rotate(-45 303.2336730957033,317.8224182128907) " xml:space="preserve" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="100" id="svg_6" y="352.826779" x="202.272715" stroke-width="0" stroke="#ff6633" fill="#ffffff">Tree</text>
  </g>
 </svg>

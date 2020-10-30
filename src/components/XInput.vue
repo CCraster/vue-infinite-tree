@@ -62,7 +62,6 @@ export default {
   },
   methods: {
     handleInputValueChange(e) {
-      console.log(e)
       this.value_inner = e.target.value
     }
   }
@@ -88,6 +87,11 @@ $color-gray-2: #c5c8ce;
   &:focus {
     border-color: $color-primary;
     caret-color: $color-primary;
+  }
+
+  &::selection {
+    background: lighten($color-primary, 15%);
+    color: #fff;
   }
 }
 </style>

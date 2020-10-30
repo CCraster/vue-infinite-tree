@@ -20,6 +20,7 @@
         :tabSize="tabSize"
         :translateY="(renderNodePosRange[0] + index) * treeNodeHeight"
         :isNodeFocus="focusNode && node.id === focusNode.id"
+        v-bind="{ checkable }"
         @setFocusNode="handleSetFocusNode"
         @vit-changeNode="handleChangeNode"
         @vit-selectNode="handleSelectNode"
@@ -46,6 +47,11 @@ export default {
     value: {
       type: Array,
       default: () => []
+    },
+    // 是否能够复选
+    checkable: {
+      type: Boolean,
+      default: false
     }
   },
   components: {
