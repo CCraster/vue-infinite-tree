@@ -9,6 +9,7 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
+    "build:online": "vue-cli-service build && git add . && git commit -m 'build: publish🎉🎉🎉' && git push",
     "build:lib": "BUILD_LIB=true vue-cli-service build --target lib --name vue-infinite-tree package/index.js",
     "lint": "vue-cli-service lint",
     "test": "echo \"Error: no test specified\" && exit 1",
