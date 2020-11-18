@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <!-- HEADER -->
-    <div class="logo-wrapper">
+    <div class="logo-wrapper" v-if="false">
       <span>Vue</span>
       <span>Infinite</span>
       <span>Tree</span>
@@ -23,8 +23,14 @@
         <div class="vit-config">
           <label>vitConfig</label>
           <div>
-            <label :class="{ active: vitConfig.checkable }">checkable</label>
+            <label :class="{ active: vitConfig.checkable }"> checkable </label>
             <x-switch v-model="vitConfig.checkable" />
+          </div>
+          <div>
+            <label :class="{ active: vitConfig.defaultExpandAll }">
+              defaultExpandAll
+            </label>
+            <x-switch v-model="vitConfig.defaultExpandAll" />
           </div>
         </div>
       </div>
@@ -33,6 +39,7 @@
         v-model="treeData"
         class="infinite-tree"
         :checkable="vitConfig.checkable"
+        :defaultExpandAll="vitConfig.defaultExpandAll"
       />
       <!-- tree data -->
       <div class="tree-preview">{{ treePreviewData }}</div>
@@ -41,7 +48,7 @@
 </template>
 
 <script>
-import { fakeTreeJsonData } from '@/utils/dataMock.js'
+import { fakeTreeJsonData, fakeTreeJsonDataV2 } from '@/utils/dataMock.js'
 
 /* 开发模式导入 - start */
 import InfiniteTree from '../package/index.js'
@@ -61,9 +68,10 @@ export default {
   data() {
     return {
       treeData: [],
-      mockConfigStr: '',
+      mockConfigStr: '1000,3',
       vitConfig: {
-        checkable: true
+        checkable: true,
+        defaultExpandAll: true
       }
     }
   },
@@ -88,11 +96,11 @@ export default {
     }
   },
   mounted() {
-    this.treeData = fakeTreeJsonData(...this.mockConfig)
+    this.treeData = fakeTreeJsonDataV2(...this.mockConfig)
   },
   methods: {
     handleDataMock() {
-      this.treeData = fakeTreeJsonData(...this.mockConfig)
+      this.treeData = fakeTreeJsonDataV2(...this.mockConfig)
     }
   }
 }
@@ -181,6 +189,9 @@ $color-gray-2: #c5c8ce;
           display: flex;
           justify-content: space-between;
           align-items: center;
+          &:not(:last-child) {
+            margin-bottom: 10px;
+          }
           .active {
             color: $color-primary;
           }

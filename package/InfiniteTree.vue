@@ -33,12 +33,7 @@
 <script>
 import './styles/index.scss'
 import TreeNode from './TreeNode'
-import {
-  treeJson2List,
-  getValueFromPath,
-  setChildrenStatus,
-  checkAncestorStatus
-} from './utils'
+import treeUtils from './utils'
 import { generateTreeNode } from '@/utils/dataMock.js'
 
 export default {
@@ -50,6 +45,11 @@ export default {
     },
     // 是否能够复选
     checkable: {
+      type: Boolean,
+      default: false
+    },
+    // 默认展开所有树节点
+    defaultExpandAll: {
       type: Boolean,
       default: false
     }
@@ -77,11 +77,16 @@ export default {
       // deep: true,
       immediate: true,
       handler(newValue) {
-        // if (true || JSON.stringify(newValue) !== JSON.stringify(oldValue)) {
-        this._treeData = newValue
-        this.totalNodeList = treeJson2List(newValue)
+        if (!newValue?.[0]?.state) {
+          treeUtils.initNodeInnerState(newValue, {
+            defaultExpandAll: this.defaultExpandAll
+          })
+          this._treeData = newValue
+        } else {
+          this._treeData = newValue
+        }
+        this.totalNodeList = treeUtils.treeJson2List(this._treeData)
         this.computeShouldRenderNodeList()
-        // }
       }
     },
     renderNodePosRange: {
@@ -174,40 +179,46 @@ export default {
     },
     // 增 - 增加兄弟节点
     handleAddBrotherNode(path) {
-      let node = getValueFromPath(this._treeData, path.slice(0, -1))
+      let node = treeUtils.getValueFromPath(this._treeData, path.slice(0, -1))
       let addIndex = path[path.length - 1]
-      node.splice(addIndex + 1, 0, generateTreeNode('new node'))
+      node.splice(
+        addIndex + 1,
+        0,
+        generateTreeNode({ name: 'new node', hasState: true })
+      )
       this.makeNewTreeData()
     },
     // 增 - 增加子节点
     handleAddChildrenNode(path) {
-      let node = getValueFromPath(this._treeData, path)
-      node.children.unshift(generateTreeNode('new node'))
+      let node = treeUtils.getValueFromPath(this._treeData, path)
+      node.children.unshift(
+        generateTreeNode({ name: 'new node', hasState: true })
+      )
       this.makeNewTreeData()
     },
     // 删
     handleDeleteNode(path) {
-      let node = getValueFromPath(this._treeData, path.slice(0, -1))
+      let node = treeUtils.getValueFromPath(this._treeData, path.slice(0, -1))
       let deleteIndex = path[path.length - 1]
       node.splice(deleteIndex, 1)
       this.makeNewTreeData()
     },
     // 改
     handleChangeNode(path, newName) {
-      let node = getValueFromPath(this._treeData, path)
+      let node = treeUtils.getValueFromPath(this._treeData, path)
       node.name = newName
       this.makeNewTreeData()
     },
     // 选择node
     handleSelectNode(path, selected) {
-      let node = getValueFromPath(this._treeData, path)
-      setChildrenStatus(node, 'selected', selected) // 设置后代节点
-      checkAncestorStatus(this._treeData, path.slice(0, -1), selected) // 检查祖先的选中状态
+      let node = treeUtils.getValueFromPath(this._treeData, path)
+      treeUtils.setChildrenStatus(node, 'selected', selected) // 设置后代节点
+      treeUtils.checkAncestorStatus(this._treeData, path.slice(0, -1), selected) // 检查祖先的选中状态
       this.makeNewTreeData()
     },
     // 折叠 / 展开节点
     handleOpenNode(path) {
-      let node = getValueFromPath(this._treeData, path)
+      let node = treeUtils.getValueFromPath(this._treeData, path)
       node.state.opened = !node.state.opened
       this.makeNewTreeData()
     }
