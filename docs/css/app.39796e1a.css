@@ -78,14 +78,14 @@
   background-color: #ffb399;
   color: #fff;
 }
-#app[data-v-0e6e88ca] {
+#app[data-v-215fe2fc] {
   color: #2c3e50;
   width: 1100px;
   height: 100%;
   margin: 0 auto;
   padding: 10px 0;
 }
-#app .logo-wrapper[data-v-0e6e88ca] {
+#app .logo-wrapper[data-v-215fe2fc] {
   box-shadow: 0 5px 20px -5px rgba(0, 0, 0, 0.3);
   border-radius: 4px;
   height: 100px;
@@ -100,31 +100,31 @@
   user-select: none;
   padding: 0 40px;
 }
-#app .logo-wrapper > span[data-v-0e6e88ca] {
+#app .logo-wrapper > span[data-v-215fe2fc] {
   color: #fff;
   line-height: 100px;
 }
-#app .logo-wrapper > span[data-v-0e6e88ca]:first-child {
+#app .logo-wrapper > span[data-v-215fe2fc]:first-child {
   font-size: 100px;
 }
-#app .logo-wrapper > span[data-v-0e6e88ca]:nth-child(2) {
+#app .logo-wrapper > span[data-v-215fe2fc]:nth-child(2) {
   font-size: 120px;
 }
-#app .logo-wrapper > span[data-v-0e6e88ca]:nth-child(3) {
+#app .logo-wrapper > span[data-v-215fe2fc]:nth-child(3) {
   font-size: 100px;
 }
-#app .main-wrapper[data-v-0e6e88ca] {
+#app .main-wrapper[data-v-215fe2fc] {
   display: flex;
   max-height: calc(100% - 110px);
 }
-#app .main-wrapper .config-panel[data-v-0e6e88ca] {
+#app .main-wrapper .config-panel[data-v-215fe2fc] {
   width: 250px;
   flex-shrink: 0;
   padding: 0 5px;
   box-shadow: 0 5px 20px -5px rgba(0, 0, 0, 0.3);
   border-radius: 4px;
 }
-#app .main-wrapper .config-panel .mock-config[data-v-0e6e88ca] {
+#app .main-wrapper .config-panel .mock-config[data-v-215fe2fc] {
   position: relative;
   display: flex;
   flex-direction: column;
@@ -133,7 +133,7 @@
   margin-top: 20px;
   align-items: flex-end;
 }
-#app .main-wrapper .config-panel .mock-config > label[data-v-0e6e88ca] {
+#app .main-wrapper .config-panel .mock-config > label[data-v-215fe2fc] {
   position: absolute;
   top: -10px;
   left: 10px;
@@ -144,10 +144,10 @@
   border-radius: 2px;
   background-color: #2c3e50;
 }
-#app .main-wrapper .config-panel .mock-config > input[data-v-0e6e88ca] {
+#app .main-wrapper .config-panel .mock-config > input[data-v-215fe2fc] {
   margin-bottom: 5px;
 }
-#app .main-wrapper .config-panel .vit-config[data-v-0e6e88ca] {
+#app .main-wrapper .config-panel .vit-config[data-v-215fe2fc] {
   position: relative;
   display: flex;
   flex-direction: column;
@@ -155,7 +155,7 @@
   border: 1px dashed #2c3e50;
   margin-top: 20px;
 }
-#app .main-wrapper .config-panel .vit-config > label[data-v-0e6e88ca] {
+#app .main-wrapper .config-panel .vit-config > label[data-v-215fe2fc] {
   position: absolute;
   top: -10px;
   left: 10px;
@@ -166,21 +166,28 @@
   border-radius: 2px;
   background-color: #2c3e50;
 }
-#app .main-wrapper .config-panel .vit-config > div[data-v-0e6e88ca] {
+#app .main-wrapper .config-panel .vit-config > div[data-v-215fe2fc] {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
-#app .main-wrapper .config-panel .vit-config > div .active[data-v-0e6e88ca] {
+#app
+  .main-wrapper
+  .config-panel
+  .vit-config
+  > div[data-v-215fe2fc]:not(:last-child) {
+  margin-bottom: 10px;
+}
+#app .main-wrapper .config-panel .vit-config > div .active[data-v-215fe2fc] {
   color: #f63;
 }
-#app .main-wrapper .infinite-tree[data-v-0e6e88ca] {
+#app .main-wrapper .infinite-tree[data-v-215fe2fc] {
   box-shadow: 0 5px 20px -5px rgba(0, 0, 0, 0.3);
   border-radius: 4px;
   margin: 0 10px;
   height: auto;
 }
-#app .main-wrapper .tree-preview[data-v-0e6e88ca] {
+#app .main-wrapper .tree-preview[data-v-215fe2fc] {
   width: 400px;
   max-height: 100%;
   overflow: scroll;
