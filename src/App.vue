@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <!-- HEADER -->
-    <div class="logo-wrapper" v-if="false">
+    <div class="logo-wrapper" v-if="!isDev">
       <span>Vue</span>
       <span>Infinite</span>
       <span>Tree</span>
@@ -60,6 +60,11 @@ import InfiniteTree from '../package/index.js'
 // import './testImport.scss'
 /* 测试以外部库方式导入 - end */
 
+const VIT_CONFIG_INIT = {
+  checkable: true,
+  defaultExpandAll: true
+}
+
 export default {
   name: 'App',
   components: {
@@ -69,13 +74,14 @@ export default {
     return {
       treeData: [],
       mockConfigStr: '1000,3',
-      vitConfig: {
-        checkable: true,
-        defaultExpandAll: true
-      }
+      vitConfig: {}
     }
   },
   computed: {
+    // 是否开发环境
+    isDev() {
+      return location.port === '8080'
+    },
     // 把treeData格式化成美观的数据
     treePreviewData() {
       return JSON.stringify(this.treeData, false, 2)
@@ -95,10 +101,28 @@ export default {
       return config
     }
   },
+  watch: {
+    vitConfig: {
+      deep: true,
+      handler(newValue) {
+        localStorage.setItem('VIT_CONFIG', JSON.stringify(newValue))
+      }
+    }
+  },
+  created() {
+    const storedVitConfig = localStorage.getItem('VIT_CONFIG')
+    if (storedVitConfig) {
+      this.vitConfig = JSON.parse(storedVitConfig)
+    } else {
+      this.vitConfig = VIT_CONFIG_INIT
+      localStorage.setItem('VIT_CONFIG', JSON.stringify(this.vitConfig))
+    }
+  },
   mounted() {
     this.treeData = fakeTreeJsonDataV2(...this.mockConfig)
   },
   methods: {
+    // 改变数据mock配置时，重新生成mock数据
     handleDataMock() {
       this.treeData = fakeTreeJsonDataV2(...this.mockConfig)
     }
