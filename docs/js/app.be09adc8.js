@@ -112,7 +112,13 @@
           t = e.$createElement,
           n = e._self._c || t
         return n('div', { attrs: { id: 'app' } }, [
-          e._e(),
+          e.isDev
+            ? e._e()
+            : n('div', { staticClass: 'logo-wrapper' }, [
+                n('span', [e._v('Vue')]),
+                n('span', [e._v('Infinite')]),
+                n('span', [e._v('Tree')])
+              ]),
           n(
             'div',
             { staticClass: 'main-wrapper' },
@@ -214,17 +220,17 @@
       r = (n('d81d'), n('ac1f'), n('1276'), n('498a'), n('2909')),
       l = n('df9c'),
       s = n('3772'),
-      c = {
+      c = { checkable: !0, defaultExpandAll: !0 },
+      d = {
         name: 'App',
         components: { InfiniteTree: s['a'] },
         data: function () {
-          return {
-            treeData: [],
-            mockConfigStr: '1000,3',
-            vitConfig: { checkable: !0, defaultExpandAll: !0 }
-          }
+          return { treeData: [], mockConfigStr: '1000,3', vitConfig: {} }
         },
         computed: {
+          isDev: function () {
+            return '8080' === location.port
+          },
           treePreviewData: function () {
             return JSON.stringify(this.treeData, !1, 2)
           },
@@ -238,6 +244,24 @@
             return (e = 2 !== e.length ? [100, 3] : e), e
           }
         },
+        watch: {
+          vitConfig: {
+            deep: !0,
+            handler: function (e) {
+              localStorage.setItem('VIT_CONFIG', JSON.stringify(e))
+            }
+          }
+        },
+        created: function () {
+          var e = localStorage.getItem('VIT_CONFIG')
+          e
+            ? (this.vitConfig = JSON.parse(e))
+            : ((this.vitConfig = c),
+              localStorage.setItem(
+                'VIT_CONFIG',
+                JSON.stringify(this.vitConfig)
+              ))
+        },
         mounted: function () {
           this.treeData = l['a'].apply(void 0, Object(r['a'])(this.mockConfig))
         },
@@ -250,11 +274,11 @@
           }
         }
       },
-      d = c,
-      u = (n('6037'), n('2877')),
-      h = Object(u['a'])(d, i, o, !1, null, '215fe2fc', null),
-      f = h.exports,
-      p =
+      u = d,
+      h = (n('d57b'), n('2877')),
+      f = Object(h['a'])(u, i, o, !1, null, '87bb9dc4', null),
+      p = f.exports,
+      v =
         (n('f5fa'),
         function () {
           var e = this,
@@ -281,8 +305,8 @@
             )
           )
         }),
-      v = [],
-      m = {
+      m = [],
+      g = {
         name: 'XInput',
         props: {
           value: { type: String, default: '' },
@@ -320,10 +344,10 @@
           }
         }
       },
-      N = m,
-      b = (n('8191'), Object(u['a'])(N, p, v, !1, null, '0e290ff5', null)),
-      g = b.exports,
-      k = function () {
+      N = g,
+      b = (n('8191'), Object(h['a'])(N, v, m, !1, null, '0e290ff5', null)),
+      k = b.exports,
+      _ = function () {
         var e = this,
           t = e.$createElement,
           n = e._self._c || t
@@ -342,8 +366,8 @@
           [e._v(' ' + e._s(e.title) + ' ')]
         )
       },
-      y = [],
-      _ = {
+      C = [],
+      y = {
         name: 'XButton',
         props: { title: { type: String, default: 'button' } },
         methods: {
@@ -352,10 +376,10 @@
           }
         }
       },
-      C = _,
-      w = (n('fb62'), Object(u['a'])(C, k, y, !1, null, '5c0f35ec', null)),
-      S = w.exports,
-      x = function () {
+      w = y,
+      S = (n('fb62'), Object(h['a'])(w, _, C, !1, null, '5c0f35ec', null)),
+      x = S.exports,
+      O = function () {
         var e = this,
           t = e.$createElement,
           n = e._self._c || t
@@ -374,7 +398,7 @@
         )
       },
       D = [],
-      O = {
+      L = {
         name: 'XSwitch',
         props: { value: { type: Boolean, default: !1 } },
         data: function () {
@@ -400,24 +424,18 @@
           }
         }
       },
-      L = O,
-      P = (n('f69f'), Object(u['a'])(L, x, D, !1, null, '0a8d3964', null)),
-      j = P.exports
-    a['a'].component('x-input', g),
-      a['a'].component('x-button', S),
-      a['a'].component('x-switch', j),
+      P = L,
+      j = (n('f69f'), Object(h['a'])(P, O, D, !1, null, '0a8d3964', null)),
+      E = j.exports
+    a['a'].component('x-input', k),
+      a['a'].component('x-button', x),
+      a['a'].component('x-switch', E),
       (a['a'].config.productionTip = !1),
       new a['a']({
         render: function (e) {
-          return e(f)
+          return e(p)
         }
       }).$mount('#app')
-  },
-  6037: function (e, t, n) {
-    'use strict'
-    var a = n('c818'),
-      i = n.n(a)
-    i.a
   },
   7081: function (e, t, n) {
     'use strict'
@@ -611,7 +629,7 @@
           ;(t.state = a), t.children.length > 0 && e(t.children, n)
         })
       },
-      N = function (e) {
+      g = function (e) {
         var t = [],
           n = function e(n, a) {
             n.forEach(function (n, i) {
@@ -636,14 +654,14 @@
           }
         return n(e, []), t
       },
-      b = function e(t, n, a) {
+      N = function e(t, n, a) {
         ;(t.state[n] = a),
           t.children.length > 0 &&
             t.children.forEach(function (t) {
               e(t, n, a)
             })
       },
-      g = function (e, t, n) {
+      b = function (e, t, n) {
         for (var a = t.length, i = a; i > 0; i--) {
           var o = v(e, t.slice(0, i))
           if (!Array.isArray(o)) {
@@ -660,12 +678,12 @@
       k = {
         getValueFromPath: p(v, 'getValueFromPath'),
         initNodeInnerState: p(m, 'initNodeInnerState'),
-        treeJson2List: p(N, 'treeJson2List'),
-        setChildrenStatus: p(b, 'setChildrenStatus'),
-        checkAncestorStatus: p(g, 'checkAncestorStatus')
+        treeJson2List: p(g, 'treeJson2List'),
+        setChildrenStatus: p(N, 'setChildrenStatus'),
+        checkAncestorStatus: p(b, 'checkAncestorStatus')
       },
-      y = n('df9c'),
-      _ = {
+      _ = n('df9c'),
+      C = {
         name: 'InfiniteTree',
         props: {
           value: {
@@ -795,14 +813,14 @@
             t.splice(
               n + 1,
               0,
-              Object(y['b'])({ name: 'new node', hasState: !0 })
+              Object(_['b'])({ name: 'new node', hasState: !0 })
             ),
               this.makeNewTreeData()
           },
           handleAddChildrenNode: function (e) {
             var t = k.getValueFromPath(this._treeData, e)
             t.children.unshift(
-              Object(y['b'])({ name: 'new node', hasState: !0 })
+              Object(_['b'])({ name: 'new node', hasState: !0 })
             ),
               this.makeNewTreeData()
           },
@@ -827,8 +845,8 @@
           }
         }
       },
-      C = _,
-      w = Object(d['a'])(C, a, i, !1, null, null, null)
+      y = C,
+      w = Object(d['a'])(y, a, i, !1, null, null, null)
     t['a'] = w.exports
   },
   '7d04': function (e, t, n) {},
@@ -838,8 +856,14 @@
       i = n.n(a)
     i.a
   },
+  '8b84': function (e, t, n) {},
   bce3: function (e, t, n) {},
-  c818: function (e, t, n) {},
+  d57b: function (e, t, n) {
+    'use strict'
+    var a = n('8b84'),
+      i = n.n(a)
+    i.a
+  },
   df9c: function (e, t, n) {
     'use strict'
     n.d(t, 'b', function () {
