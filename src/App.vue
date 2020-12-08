@@ -40,6 +40,7 @@
         class="infinite-tree"
         :checkable="vitConfig.checkable"
         :defaultExpandAll="vitConfig.defaultExpandAll"
+        :defaultExpandedKeys="[10003, 10016]"
       />
       <!-- tree data -->
       <div class="tree-preview">{{ treePreviewData }}</div>
@@ -48,7 +49,8 @@
 </template>
 
 <script>
-import { fakeTreeJsonData, fakeTreeJsonDataV2 } from '@/utils/dataMock.js'
+import { fakeTreeJsonDataV2 } from '@/utils/dataMock.js'
+import { dataSample } from '@/utils/dataSample.js'
 
 /* 开发模式导入 - start */
 import InfiniteTree from '../package/index.js'
@@ -119,7 +121,7 @@ export default {
     }
   },
   mounted() {
-    this.treeData = fakeTreeJsonDataV2(...this.mockConfig)
+    this.treeData = dataSample
   },
   methods: {
     // 改变数据mock配置时，重新生成mock数据

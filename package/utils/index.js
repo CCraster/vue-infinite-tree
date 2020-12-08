@@ -1,10 +1,10 @@
 // import randomCName from 'chinese-random-name'
 
-const evaluateFunctionRunningTime = (fn, desc) => {
+const evaluateFunctionRunningTime = fn => {
   return (...args) => {
     let startTime = Date.now()
     const result = fn(...args)
-    console.log(desc, ' cost: ', Date.now() - startTime, 'ms')
+    console.log(fn.name, ' cost: ', Date.now() - startTime, 'ms')
     return result
   }
 }
@@ -25,19 +25,52 @@ const getValueFromPath = (obj, path) => {
 /**
  * 给每个节点加上内部的state属性
  * @param {array} tree 未拍平的tree
+ * @param {object} options 选项参数
+ * @param {boolean} options.defaultExpandAll 是否默认节点都展开
+ * @param {array} options.defaultExpandedKeys 默认展开的节点keys
  */
 const initNodeInnerState = (tree, options) => {
-  tree.forEach(node => {
-    const state = {
-      opened: options.defaultExpandAll ? true : false,
-      selected: false,
-      disabled: false
+  const needSetAncestorOpenedArray = []
+  const setAncestorOpened = path => {
+    while (path.length > 0) {
+      if (path[path.length - 1] === 'children') path.pop()
+      let _obj = getValueFromPath(tree, path)
+      console.log(_obj, tree, path)
+      if (!_obj.state.opened) {
+        _obj.state.opened = true
+      } else {
+        break
+      }
+      path.pop()
     }
-    node.state = state
-    if (node.children.length > 0) {
-      initNodeInnerState(node.children, options)
-    }
-  })
+  }
+  const setNodeState = (tree, path, options) => {
+    tree.forEach((node, index) => {
+      const state = {
+        selected: false,
+        disabled: false
+      }
+      if (node.children.length > 0) {
+        if (options.defaultExpandAll) {
+          state.opened = true
+        } else if (options.defaultExpandedKeys.includes(node.id)) {
+          state.opened = true
+          needSetAncestorOpenedArray.push(path.slice(0, path.length - 1))
+        } else {
+          state.opened = false
+        }
+        setNodeState(node.children, [...path, index, 'children'], options)
+      } else {
+        state.opened = false
+      }
+      node.state = state
+    })
+  }
+
+  setNodeState(tree, [], options)
+  for (let path of needSetAncestorOpenedArray) {
+    setAncestorOpened(path)
+  }
 }
 
 /**
@@ -111,21 +144,9 @@ const checkAncestorStatus = (obj, path, value) => {
 }
 
 export default {
-  getValueFromPath: evaluateFunctionRunningTime(
-    getValueFromPath,
-    'getValueFromPath'
-  ),
-  initNodeInnerState: evaluateFunctionRunningTime(
-    initNodeInnerState,
-    'initNodeInnerState'
-  ),
-  treeJson2List: evaluateFunctionRunningTime(treeJson2List, 'treeJson2List'),
-  setChildrenStatus: evaluateFunctionRunningTime(
-    setChildrenStatus,
-    'setChildrenStatus'
-  ),
-  checkAncestorStatus: evaluateFunctionRunningTime(
-    checkAncestorStatus,
-    'checkAncestorStatus'
-  )
+  getValueFromPath: evaluateFunctionRunningTime(getValueFromPath),
+  initNodeInnerState: evaluateFunctionRunningTime(initNodeInnerState),
+  treeJson2List: evaluateFunctionRunningTime(treeJson2List),
+  setChildrenStatus: evaluateFunctionRunningTime(setChildrenStatus),
+  checkAncestorStatus: evaluateFunctionRunningTime(checkAncestorStatus)
 }

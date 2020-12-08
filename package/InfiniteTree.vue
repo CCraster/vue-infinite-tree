@@ -52,6 +52,11 @@ export default {
     defaultExpandAll: {
       type: Boolean,
       default: false
+    },
+    // 默认展开的树节点keys
+    defaultExpandedKeys: {
+      type: Array,
+      default: () => []
     }
   },
   components: {
@@ -79,7 +84,8 @@ export default {
       handler(newValue) {
         if (!newValue?.[0]?.state) {
           treeUtils.initNodeInnerState(newValue, {
-            defaultExpandAll: this.defaultExpandAll
+            defaultExpandAll: this.defaultExpandAll,
+            defaultExpandedKeys: this.defaultExpandedKeys
           })
           this._treeData = newValue
         } else {
@@ -184,7 +190,7 @@ export default {
       node.splice(
         addIndex + 1,
         0,
-        generateTreeNode({ name: 'new node', hasState: true })
+        generateTreeNode({ name: 'new node', needAddState: true })
       )
       this.makeNewTreeData()
     },
@@ -192,7 +198,7 @@ export default {
     handleAddChildrenNode(path) {
       let node = treeUtils.getValueFromPath(this._treeData, path)
       node.children.unshift(
-        generateTreeNode({ name: 'new node', hasState: true })
+        generateTreeNode({ name: 'new node', needAddState: true })
       )
       this.makeNewTreeData()
     },
