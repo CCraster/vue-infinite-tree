@@ -36,11 +36,13 @@
       </div>
       <!-- vit -->
       <infinite-tree
+        ref="vit"
         v-model="treeData"
         class="infinite-tree"
         :checkable="vitConfig.checkable"
         :defaultExpandAll="vitConfig.defaultExpandAll"
         :defaultExpandedKeys="[10003, 10016]"
+        :defaultCheckedKeys="[10000, 10002, 10017]"
       />
       <!-- tree data -->
       <div class="tree-preview">{{ treePreviewData }}</div>
@@ -122,6 +124,7 @@ export default {
   },
   mounted() {
     this.treeData = dataSample
+    console.log('vit vm: ', this.$refs['vit'])
   },
   methods: {
     // 改变数据mock配置时，重新生成mock数据

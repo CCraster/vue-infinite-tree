@@ -57,6 +57,11 @@ export default {
     defaultExpandedKeys: {
       type: Array,
       default: () => []
+    },
+    // 默认选中复选框的树节点keys
+    defaultCheckedKeys: {
+      type: Array,
+      default: () => []
     }
   },
   components: {
@@ -85,7 +90,8 @@ export default {
         if (!newValue?.[0]?.state) {
           treeUtils.initNodeInnerState(newValue, {
             defaultExpandAll: this.defaultExpandAll,
-            defaultExpandedKeys: this.defaultExpandedKeys
+            defaultExpandedKeys: this.defaultExpandedKeys,
+            defaultCheckedKeys: this.defaultCheckedKeys
           })
           this._treeData = newValue
         } else {

@@ -11,8 +11,8 @@ const evaluateFunctionRunningTime = fn => {
 
 /**
  * 根据路径数据path，从obj取出对应值
- * @param {*} obj
- * @param {array} path
+ * @param {object}  obj 目标对象
+ * @param {array}   path 路径数组
  */
 const getValueFromPath = (obj, path) => {
   let result = obj
@@ -24,13 +24,15 @@ const getValueFromPath = (obj, path) => {
 
 /**
  * 给每个节点加上内部的state属性
- * @param {array} tree 未拍平的tree
- * @param {object} options 选项参数
+ * @param {array}   tree 未拍平的tree
+ * @param {object}  options 选项参数
  * @param {boolean} options.defaultExpandAll 是否默认节点都展开
- * @param {array} options.defaultExpandedKeys 默认展开的节点keys
+ * @param {array}   options.defaultExpandedKeys 默认展开的节点keys
+ * @param {array}   options.defaultCheckedKeys 默认选中复选框的树节点keys
  */
 const initNodeInnerState = (tree, options) => {
-  const needSetAncestorOpenedArray = []
+  const needSetAncestorOpenedArray = [] // 需要设置祖先节点为展开状态的节点path数组
+  const needCheckAncestorAndChildrenSelectedArray = [] // 需要更正祖先和子节点选中状态的节点path数组
   const setAncestorOpened = path => {
     while (path.length > 0) {
       if (path[path.length - 1] === 'children') path.pop()
@@ -47,9 +49,9 @@ const initNodeInnerState = (tree, options) => {
   const setNodeState = (tree, path, options) => {
     tree.forEach((node, index) => {
       const state = {
-        selected: false,
         disabled: false
       }
+      // opened
       if (node.children.length > 0) {
         if (options.defaultExpandAll) {
           state.opened = true
@@ -63,6 +65,13 @@ const initNodeInnerState = (tree, options) => {
       } else {
         state.opened = false
       }
+      // selected
+      if (options.defaultCheckedKeys.includes(node.id)) {
+        state.selected = true
+        needCheckAncestorAndChildrenSelectedArray.push([...path, index])
+      } else {
+        state.selected = false
+      }
       node.state = state
     })
   }
@@ -70,6 +79,10 @@ const initNodeInnerState = (tree, options) => {
   setNodeState(tree, [], options)
   for (let path of needSetAncestorOpenedArray) {
     setAncestorOpened(path)
+  }
+  for (let path of needCheckAncestorAndChildrenSelectedArray) {
+    setChildrenStatus(getValueFromPath(tree, path), 'selected', true)
+    checkAncestorStatus(tree, path, true)
   }
 }
 
@@ -105,9 +118,9 @@ const treeJson2List = treeJson => {
 
 /**
  * 将obj的子节点的state.attr设置为value
- * @param {*} obj
- * @param {*} attr
- * @param {*} value
+ * @param {*} obj 目标对象
+ * @param {*} attr 目标属性
+ * @param {*} value 需要设定的值
  */
 const setChildrenStatus = (obj, attr, value) => {
   obj.state[attr] = value
@@ -120,9 +133,9 @@ const setChildrenStatus = (obj, attr, value) => {
 
 /**
  * 更改祖先节点的选中状态
- * @param {*} obj
- * @param {*} path
- * @param {*} value
+ * @param {*} obj 根对象
+ * @param {*} path 起始路径
+ * @param {*} value 引起变化的节点当前的值
  */
 const checkAncestorStatus = (obj, path, value) => {
   let length = path.length
