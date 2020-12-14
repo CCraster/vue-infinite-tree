@@ -11,9 +11,10 @@
     <span
       class="vit-node-checkbox"
       :class="{
-        checked: treeNode.state.selected
+        checked: treeNode.state.selected,
+        'checkbox-disabled': treeNode.state.disableCheckbox
       }"
-      @click.stop="onSelectNode"
+      @click.stop="onCheckNode"
       v-if="checkable"
     ></span>
     <span
@@ -77,12 +78,13 @@ export default {
     onNodeOpenClick() {
       !this.treeNode.isLeaf && this.$emit('vit-openNode', this.treeNode.path)
     },
-    onSelectNode() {
-      this.$emit(
-        'vit-selectNode',
-        this.treeNode.path,
-        !this.treeNode.state.selected
-      )
+    onCheckNode() {
+      !this.treeNode.state.disableCheckbox &&
+        this.$emit(
+          'vit-selectNode',
+          this.treeNode.path,
+          !this.treeNode.state.selected
+        )
     },
     onNodeClick() {
       let data = this.isNodeFocus ? null : this.treeNode

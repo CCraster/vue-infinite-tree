@@ -72,7 +72,14 @@ const initNodeInnerState = (tree, options) => {
       } else {
         state.selected = false
       }
-      node.state = state
+
+      // add state attr
+      if (node.state) {
+        console.log(node)
+        node.state = { ...node.state, ...state }
+      } else {
+        node.state = state
+      }
     })
   }
 

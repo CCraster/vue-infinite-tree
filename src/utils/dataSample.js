@@ -2,7 +2,10 @@ export const dataSample = [
   {
     id: 10000,
     name: 0.7729031223008074,
-    children: []
+    children: [],
+    state: {
+      disableCheckbox: true
+    }
   },
   {
     id: 10001,

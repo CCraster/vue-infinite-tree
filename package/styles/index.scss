@@ -80,6 +80,17 @@ $--icon-pm: 6px; // icon的padding、margin
         height: 10px;
       }
     }
+
+    &.checkbox-disabled {
+      cursor: not-allowed;
+      &:hover,
+      &:active {
+        border-color: $--color-gray-line;
+      }
+      &::after {
+        background-color: $--color-gray-line;
+      }
+    }
   }
 
   // vit node内容区域wrapper

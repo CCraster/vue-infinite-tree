@@ -87,13 +87,14 @@ export default {
       // deep: true,
       immediate: true,
       handler(newValue) {
-        if (!newValue?.[0]?.state) {
+        if (!newValue?.[1]?.state) {
           treeUtils.initNodeInnerState(newValue, {
             defaultExpandAll: this.defaultExpandAll,
             defaultExpandedKeys: this.defaultExpandedKeys,
             defaultCheckedKeys: this.defaultCheckedKeys
           })
           this._treeData = newValue
+          this.makeNewTreeData()
         } else {
           this._treeData = newValue
         }
@@ -117,6 +118,7 @@ export default {
     this.$refs['vit-wrapper'].removeEventListener('keyup', this.handleKeyUp)
   },
   methods: {
+    // 触发input事件
     makeNewTreeData() {
       this._treeData = [...this._treeData]
       this.$emit('input', this._treeData)
