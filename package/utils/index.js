@@ -163,10 +163,73 @@ const checkAncestorStatus = (obj, path, value) => {
   }
 }
 
+/**
+ *
+ */
+const computeDragType = (
+  pos,
+  renderNodePosRange,
+  totalNodeList,
+  heightArr,
+  tabSize
+) => {
+  const startY = heightArr
+    .slice(0, renderNodePosRange[0])
+    .reduce((sum, d) => sum + d, 0)
+  let belowIndex
+  for (
+    let i = renderNodePosRange[0], yPos = startY;
+    i <= renderNodePosRange[1];
+    i++
+  ) {
+    yPos += heightArr[i]
+    if (yPos > pos.y) {
+      belowIndex = i
+      break
+    }
+  }
+
+  // 计算鼠标是否位于node的1/4 - 3/4位置
+  let piancha =
+    Math.abs(
+      heightArr.slice(0, belowIndex).reduce((sum, d) => sum + d, 0) - pos.y
+    ) / heightArr[belowIndex]
+  if (piancha < 0.25) {
+    let top = heightArr.slice(0, belowIndex).reduce((sum, d) => sum + d, 0) - 1
+    let left = ((totalNodeList[belowIndex].path.length + 1) / 2) * tabSize
+    return {
+      type: 2,
+      data: { top: top, left: left, targetIndex: belowIndex, opt: 'above' }
+    }
+  } else if (piancha > 0.75) {
+    let top =
+      heightArr.slice(0, belowIndex + 1).reduce((sum, d) => sum + d, 0) - 1
+    let left, opt
+    if (
+      totalNodeList[belowIndex + 1] &&
+      totalNodeList[belowIndex].path.length <
+        totalNodeList[belowIndex + 1].path.length
+    ) {
+      left = ((totalNodeList[belowIndex + 1].path.length + 1) / 2) * tabSize
+      opt = { targetIndex: belowIndex + 1, opt: 'above' }
+    } else {
+      left = ((totalNodeList[belowIndex].path.length + 1) / 2) * tabSize
+      opt = { targetIndex: belowIndex, opt: 'below' }
+    }
+    return {
+      type: 2,
+      data: { top: top, left: left, ...opt }
+    }
+  } else {
+    return { type: 1, data: belowIndex }
+  }
+}
+
 export default {
   getValueFromPath: evaluateFunctionRunningTime(getValueFromPath),
   initNodeInnerState: evaluateFunctionRunningTime(initNodeInnerState),
   treeJson2List: evaluateFunctionRunningTime(treeJson2List),
   setChildrenStatus: evaluateFunctionRunningTime(setChildrenStatus),
-  checkAncestorStatus: evaluateFunctionRunningTime(checkAncestorStatus)
+  checkAncestorStatus: evaluateFunctionRunningTime(checkAncestorStatus),
+  computeDragType
 }

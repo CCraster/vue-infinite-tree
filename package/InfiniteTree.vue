@@ -12,19 +12,31 @@
         position: 'relative',
         height: totalNodeList.length * treeNodeHeight + 'px'
       }"
+      @dragover="onDragOver"
+      @dragleave="onDragLeave"
+      @drop="onDragDrop"
     >
       <tree-node
         v-for="(node, index) in shouldRenderNodeList"
         :key="node.id"
+        :index="renderNodePosRange[0] + index"
         :treeNode="node"
         :tabSize="tabSize"
         :translateY="(renderNodePosRange[0] + index) * treeNodeHeight"
         :isNodeFocus="focusNode && node.id === focusNode.id"
+        :isDragOver="node.id === dragOverNodeId && node.id !== dragNodeInfo.id"
+        :onNodeContentDragStart="onNodeContentDragStart"
+        :onNodeContentDragEnd="onNodeContentDragEnd"
         v-bind="{ checkable }"
         @setFocusNode="handleSetFocusNode"
         @vit-changeNode="handleChangeNode"
         @vit-selectNode="handleSelectNode"
         @vit-openNode="handleOpenNode"
+      />
+      <div
+        ref="vit-drop-indicator"
+        class="vit__drop-indicator"
+        v-show="showDropIndicator"
       />
     </div>
   </div>
@@ -73,13 +85,23 @@ export default {
       renderNodePosRange: [0, 100], // 记录需要渲染的节点的下标最小&最大值
       focusNode: null, // 处于「操作状态」的节点
       tabSize: 24, // tree缩进px
-      treeNodeHeight: 28 // 树节点高度
+      treeNodeHeight: 28, // 树节点高度
+      dragResult: null,
+      dragNodeInfo: null
     }
   },
   computed: {
     // vit节点总数：渲染 + 未渲染
     totalNodeNum() {
       return this.totalNodeList.length
+    },
+    dragOverNodeId() {
+      return this.dragResult && this.dragResult.type === 1
+        ? this.totalNodeList[this.dragResult.data].id
+        : null
+    },
+    showDropIndicator() {
+      return this.dragResult && this.dragResult.type === 2 ? true : false
     }
   },
   watch: {
@@ -231,10 +253,108 @@ export default {
       this.makeNewTreeData()
     },
     // 折叠 / 展开节点
-    handleOpenNode(path) {
+    handleOpenNode(path, options) {
       let node = treeUtils.getValueFromPath(this._treeData, path)
-      node.state.opened = !node.state.opened
+      node.state.opened = options ? options.opened : !node.state.opened
       this.makeNewTreeData()
+    },
+    onNodeContentDragStart(id, index) {
+      this.dragNodeInfo = { id, index }
+      this.handleOpenNode(this.totalNodeList[index].path, { opened: false })
+    },
+    onNodeContentDragEnd() {
+      this.dragNodeInfo = null
+    },
+    // 响应节点拖拽
+    onDragOver(e) {
+      e.preventDefault()
+      const dragType = treeUtils.computeDragType(
+        { x: e.layerX, y: e.layerY },
+        this.renderNodePosRange,
+        this.totalNodeList,
+        new Array(this.totalNodeList.length).fill(this.treeNodeHeight),
+        this.tabSize
+      )
+      if (dragType.type === 2) {
+        this.$refs['vit-drop-indicator'].style.top = dragType.data.top + 'px'
+        this.$refs['vit-drop-indicator'].style.left = dragType.data.left + 'px'
+      }
+      this.dragResult = dragType
+    },
+    onDragLeave(e) {
+      this.dragResult = null
+    },
+    onDragDrop(e) {
+      if (
+        this.dragResult.type === 1 &&
+        this.dragOverNodeId !== this.dragNodeInfo.id
+      ) {
+        let dragOverNodePath = this.totalNodeList[this.dragResult.data].path,
+          dragOverNode = treeUtils.getValueFromPath(
+            this._treeData,
+            dragOverNodePath
+          )
+        let dragNodePath = this.totalNodeList[this.dragNodeInfo.index].path,
+          dragNode = treeUtils.getValueFromPath(this._treeData, dragNodePath),
+          dragNodeParent = treeUtils.getValueFromPath(
+            this._treeData,
+            dragNodePath.slice(0, -1)
+          )
+
+        // 删除拖拽节点
+        let deleteIndex = dragNodePath[dragNodePath.length - 1]
+        dragNodeParent.splice(deleteIndex, 1)
+        // 将拖拽节点加入到新的节点中
+        if (!dragOverNode.children) {
+          dragOverNode.children = []
+        }
+        dragOverNode.children.push(dragNode)
+        dragOverNode.state.opened = true
+        this.makeNewTreeData()
+      } else if (
+        this.dragResult.type === 2 &&
+        this.totalNodeList[this.dragResult.data.targetIndex].id !==
+          this.dragNodeInfo.id
+      ) {
+        let dragRelativeNodePath = this.totalNodeList[
+            this.dragResult.data.targetIndex
+          ].path,
+          dragRelativeNodeParent = treeUtils.getValueFromPath(
+            this._treeData,
+            dragRelativeNodePath.slice(0, -1)
+          )
+        let dragNodePath = this.totalNodeList[this.dragNodeInfo.index].path,
+          dragNode = treeUtils.getValueFromPath(this._treeData, dragNodePath),
+          dragNodeParent = treeUtils.getValueFromPath(
+            this._treeData,
+            dragNodePath.slice(0, -1)
+          )
+
+        // dragNodeParent.splice(deleteIndex, 1)
+        // 将拖拽节点加入到新的节点的相对位置
+        let relativeIndex =
+          dragRelativeNodePath[dragRelativeNodePath.length - 1]
+        if (this.dragResult.data.opt === 'above') {
+          dragRelativeNodeParent.splice(relativeIndex, 0, dragNode)
+          // debugger
+        } else {
+          dragRelativeNodeParent.splice(relativeIndex + 1, 0, dragNode)
+          // debugger
+        }
+        // 删除拖拽节点
+        let deleteIndex = dragNodePath[dragNodePath.length - 1]
+        if (
+          dragNodeParent === dragRelativeNodeParent &&
+          deleteIndex > relativeIndex
+        ) {
+          dragNodeParent.splice(deleteIndex + 1, 1)
+        } else {
+          dragNodeParent.splice(deleteIndex, 1)
+        }
+        this.makeNewTreeData()
+      }
+
+      this.dragResult = null
     }
   }
 }

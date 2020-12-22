@@ -1,5 +1,5 @@
 <template>
-  <div class="vit-node-wrapper" :style="nodeStyle" draggable>
+  <div class="vit-node-wrapper" :style="nodeStyle">
     <span
       class="vit-node-arrow"
       :class="{
@@ -18,11 +18,19 @@
       v-if="checkable"
     ></span>
     <span
+      ref="vit-node-content"
       class="vit-node-content"
-      :class="{ 'vit-node-focus': isNodeFocus }"
+      :class="{
+        'vit-node-focus': isNodeFocus,
+        'is-drag-over': isDragOver
+      }"
+      draggable
       @click="onNodeClick"
+      @dragstart="onNodeContentDragStart(treeNode.id, index)"
+      @dragend="onNodeContentDragEnd()"
     >
-      <span @blur="onNodeBlur">{{ treeNode.name }}</span>
+      <!-- {{ treeNode.name }} -->
+      <span @blur="onNodeBlur" draggable="false">{{ treeNode.name }}</span>
     </span>
   </div>
 </template>
@@ -31,6 +39,11 @@
 export default {
   name: 'TreeNode',
   props: {
+    // 在原数据数组里的序号
+    index: {
+      type: Number,
+      default: -1
+    },
     treeNode: {
       type: Object,
       default: () => {}
@@ -54,11 +67,24 @@ export default {
     checkable: {
       type: Boolean,
       default: false
+    },
+    // 是否是拖动的目标对象
+    isDragOver: {
+      type: Boolean,
+      default: false
+    },
+    onNodeContentDragStart: {
+      type: Function,
+      default: () => {}
+    },
+    onNodeContentDragEnd: {
+      type: Function,
+      default: () => {}
     }
   },
   data() {
     return {
-      // nodeEditable: false
+      // nodeEditable: false,
     }
   },
   computed: {
@@ -95,6 +121,18 @@ export default {
         this.$emit('vit-changeNode', this.treeNode.path, e.target.innerHTML)
       }
     }
+    // onNodeContentDragStart(e) {
+    //   // this.isNodeContentDragOver = true
+    //   // console.log(e.type, e)
+    // },
+    // onNodeContentDragOver(e) {
+    //   // this.isNodeContentDragOver = true
+    //   // console.log('in')
+    // },
+    // onNodeContentDragEnd(e) {
+    //   // this.isNodeContentDragOver = false
+    //   // console.log(e.type, e)
+    // }
   }
 }
 </script>

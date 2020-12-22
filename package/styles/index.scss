@@ -107,5 +107,29 @@ $--icon-pm: 6px; // icon的padding、margin
       background-color: lighten($--color-primary, 20%);
       color: #fff;
     }
+    &.is-drag-over {
+      background-color: lighten($--color-primary, 20%);
+    }
+  }
+}
+
+// vit drop指示器
+.vit__drop-indicator {
+  position: absolute;
+  // top: 10px;
+  // left: 10px;
+  height: 2px;
+  width: 100px;
+  background-color: $--color-primary;
+  &::before {
+    $width: 6px;
+    top: -2px;
+    left: -$width / 2;
+    position: absolute;
+    content: '';
+    height: $width;
+    width: $width;
+    border-radius: $width;
+    background-color: $--color-primary;
   }
 }
