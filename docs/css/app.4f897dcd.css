@@ -64,6 +64,16 @@
   width: 10px;
   height: 10px;
 }
+.vit-node-wrapper .vit-node-checkbox.checkbox-disabled {
+  cursor: not-allowed;
+}
+.vit-node-wrapper .vit-node-checkbox.checkbox-disabled:active,
+.vit-node-wrapper .vit-node-checkbox.checkbox-disabled:hover {
+  border-color: #e4e7ed;
+}
+.vit-node-wrapper .vit-node-checkbox.checkbox-disabled:after {
+  background-color: #e4e7ed;
+}
 .vit-node-wrapper .vit-node-content {
   word-break: break-word;
   cursor: pointer;
@@ -78,14 +88,33 @@
   background-color: #ffb399;
   color: #fff;
 }
-#app[data-v-87bb9dc4] {
+.vit-node-wrapper .vit-node-content.is-drag-over {
+  background-color: #ffb399;
+}
+.vit__drop-indicator {
+  position: absolute;
+  height: 2px;
+  width: 100px;
+  background-color: #f63;
+}
+.vit__drop-indicator:before {
+  top: -2px;
+  left: -3px;
+  position: absolute;
+  content: '';
+  height: 6px;
+  width: 6px;
+  border-radius: 6px;
+  background-color: #f63;
+}
+#app[data-v-2415745e] {
   color: #2c3e50;
   width: 1100px;
   height: 100%;
   margin: 0 auto;
   padding: 10px 0;
 }
-#app .logo-wrapper[data-v-87bb9dc4] {
+#app .logo-wrapper[data-v-2415745e] {
   box-shadow: 0 5px 20px -5px rgba(0, 0, 0, 0.3);
   border-radius: 4px;
   height: 100px;
@@ -100,31 +129,31 @@
   user-select: none;
   padding: 0 40px;
 }
-#app .logo-wrapper > span[data-v-87bb9dc4] {
+#app .logo-wrapper > span[data-v-2415745e] {
   color: #fff;
   line-height: 100px;
 }
-#app .logo-wrapper > span[data-v-87bb9dc4]:first-child {
+#app .logo-wrapper > span[data-v-2415745e]:first-child {
   font-size: 100px;
 }
-#app .logo-wrapper > span[data-v-87bb9dc4]:nth-child(2) {
+#app .logo-wrapper > span[data-v-2415745e]:nth-child(2) {
   font-size: 120px;
 }
-#app .logo-wrapper > span[data-v-87bb9dc4]:nth-child(3) {
+#app .logo-wrapper > span[data-v-2415745e]:nth-child(3) {
   font-size: 100px;
 }
-#app .main-wrapper[data-v-87bb9dc4] {
+#app .main-wrapper[data-v-2415745e] {
   display: flex;
   max-height: calc(100% - 110px);
 }
-#app .main-wrapper .config-panel[data-v-87bb9dc4] {
+#app .main-wrapper .config-panel[data-v-2415745e] {
   width: 250px;
   flex-shrink: 0;
   padding: 0 5px;
   box-shadow: 0 5px 20px -5px rgba(0, 0, 0, 0.3);
   border-radius: 4px;
 }
-#app .main-wrapper .config-panel .mock-config[data-v-87bb9dc4] {
+#app .main-wrapper .config-panel .mock-config[data-v-2415745e] {
   position: relative;
   display: flex;
   flex-direction: column;
@@ -133,7 +162,7 @@
   margin-top: 20px;
   align-items: flex-end;
 }
-#app .main-wrapper .config-panel .mock-config > label[data-v-87bb9dc4] {
+#app .main-wrapper .config-panel .mock-config > label[data-v-2415745e] {
   position: absolute;
   top: -10px;
   left: 10px;
@@ -144,10 +173,10 @@
   border-radius: 2px;
   background-color: #2c3e50;
 }
-#app .main-wrapper .config-panel .mock-config > input[data-v-87bb9dc4] {
+#app .main-wrapper .config-panel .mock-config > input[data-v-2415745e] {
   margin-bottom: 5px;
 }
-#app .main-wrapper .config-panel .vit-config[data-v-87bb9dc4] {
+#app .main-wrapper .config-panel .vit-config[data-v-2415745e] {
   position: relative;
   display: flex;
   flex-direction: column;
@@ -155,7 +184,7 @@
   border: 1px dashed #2c3e50;
   margin-top: 20px;
 }
-#app .main-wrapper .config-panel .vit-config > label[data-v-87bb9dc4] {
+#app .main-wrapper .config-panel .vit-config > label[data-v-2415745e] {
   position: absolute;
   top: -10px;
   left: 10px;
@@ -166,7 +195,7 @@
   border-radius: 2px;
   background-color: #2c3e50;
 }
-#app .main-wrapper .config-panel .vit-config > div[data-v-87bb9dc4] {
+#app .main-wrapper .config-panel .vit-config > div[data-v-2415745e] {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -175,19 +204,19 @@
   .main-wrapper
   .config-panel
   .vit-config
-  > div[data-v-87bb9dc4]:not(:last-child) {
+  > div[data-v-2415745e]:not(:last-child) {
   margin-bottom: 10px;
 }
-#app .main-wrapper .config-panel .vit-config > div .active[data-v-87bb9dc4] {
+#app .main-wrapper .config-panel .vit-config > div .active[data-v-2415745e] {
   color: #f63;
 }
-#app .main-wrapper .infinite-tree[data-v-87bb9dc4] {
+#app .main-wrapper .infinite-tree[data-v-2415745e] {
   box-shadow: 0 5px 20px -5px rgba(0, 0, 0, 0.3);
   border-radius: 4px;
   margin: 0 10px;
   height: auto;
 }
-#app .main-wrapper .tree-preview[data-v-87bb9dc4] {
+#app .main-wrapper .tree-preview[data-v-2415745e] {
   width: 400px;
   max-height: 100%;
   overflow: scroll;

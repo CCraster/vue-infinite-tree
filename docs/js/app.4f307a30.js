@@ -1,23 +1,23 @@
 ;(function (e) {
   function t(t) {
     for (
-      var a, r, l = t[0], s = t[1], c = t[2], u = 0, h = [];
-      u < l.length;
+      var a, r, d = t[0], l = t[1], s = t[2], u = 0, h = [];
+      u < d.length;
       u++
     )
-      (r = l[u]),
+      (r = d[u]),
         Object.prototype.hasOwnProperty.call(i, r) && i[r] && h.push(i[r][0]),
         (i[r] = 0)
-    for (a in s) Object.prototype.hasOwnProperty.call(s, a) && (e[a] = s[a])
-    d && d(t)
+    for (a in l) Object.prototype.hasOwnProperty.call(l, a) && (e[a] = l[a])
+    c && c(t)
     while (h.length) h.shift()()
-    return o.push.apply(o, c || []), n()
+    return o.push.apply(o, s || []), n()
   }
   function n() {
     for (var e, t = 0; t < o.length; t++) {
-      for (var n = o[t], a = !0, l = 1; l < n.length; l++) {
-        var s = n[l]
-        0 !== i[s] && (a = !1)
+      for (var n = o[t], a = !0, d = 1; d < n.length; d++) {
+        var l = n[d]
+        0 !== i[l] && (a = !1)
       }
       a && (o.splice(t--, 1), (e = r((r.s = n[0]))))
     }
@@ -76,15 +76,21 @@
       return Object.prototype.hasOwnProperty.call(e, t)
     }),
     (r.p = '/vue-infinite-tree/')
-  var l = (window['webpackJsonp'] = window['webpackJsonp'] || []),
-    s = l.push.bind(l)
-  ;(l.push = t), (l = l.slice())
-  for (var c = 0; c < l.length; c++) t(l[c])
-  var d = s
+  var d = (window['webpackJsonp'] = window['webpackJsonp'] || []),
+    l = d.push.bind(d)
+  ;(d.push = t), (d = d.slice())
+  for (var s = 0; s < d.length; s++) t(d[s])
+  var c = l
   o.push([0, 'chunk-vendors']), n()
 })({
   0: function (e, t, n) {
     e.exports = n('56d7')
+  },
+  2570: function (e, t, n) {
+    'use strict'
+    var a = n('b5ab'),
+      i = n.n(a)
+    i.a
   },
   3772: function (e, t, n) {
     'use strict'
@@ -195,10 +201,13 @@
                 ])
               ]),
               n('infinite-tree', {
+                ref: 'vit',
                 staticClass: 'infinite-tree',
                 attrs: {
                   checkable: e.vitConfig.checkable,
-                  defaultExpandAll: e.vitConfig.defaultExpandAll
+                  defaultExpandAll: e.vitConfig.defaultExpandAll,
+                  defaultExpandedKeys: [10003, 10016],
+                  defaultCheckedKeys: [1e4, 10002, 10017]
                 },
                 model: {
                   value: e.treeData,
@@ -218,10 +227,60 @@
       },
       o = [],
       r = (n('d81d'), n('ac1f'), n('1276'), n('498a'), n('2909')),
-      l = n('df9c'),
+      d = n('df9c'),
+      l = [
+        {
+          id: 1e4,
+          name: 0.7729031223008074,
+          children: [],
+          state: { disableCheckbox: !0 }
+        },
+        {
+          id: 10001,
+          name: 0.9745660976952191,
+          children: [{ id: 10002, name: 0.618805044127346, children: [] }]
+        },
+        {
+          id: 10003,
+          name: 0.5897049787693982,
+          children: [{ id: 10004, name: 0.3142245226854963, children: [] }]
+        },
+        { id: 10005, name: 0.8694079685243465, children: [] },
+        {
+          id: 10006,
+          name: 0.5421049066156653,
+          children: [{ id: 10007, name: 0.9612600618093585, children: [] }]
+        },
+        { id: 10008, name: 0.11522673158333796, children: [] },
+        {
+          id: 10009,
+          name: 0.7424502905651924,
+          children: [{ id: 10010, name: 0.07154498224293993, children: [] }]
+        },
+        { id: 10011, name: 0.43036585053853416, children: [] },
+        { id: 10012, name: 0.17475037726610854, children: [] },
+        { id: 10013, name: 0.6951257719789459, children: [] },
+        { id: 10014, name: 0.8302479834800267, children: [] },
+        { id: 10015, name: 0.24943196589338856, children: [] },
+        {
+          id: 10016,
+          name: 0.37955018522397355,
+          children: [
+            {
+              id: 10017,
+              name: 0.18864036147578478,
+              children: [{ id: 10021, name: 0.31243243242342, children: [] }]
+            },
+            { id: 10022, name: 0.678743543131, children: [] }
+          ]
+        },
+        { id: 10018, name: 0.44445063568631227, children: [] },
+        { id: 10019, name: 0.5214757886862578, children: [] },
+        { id: 10020, name: 0.7145038359028735, children: [] }
+      ],
       s = n('3772'),
       c = { checkable: !0, defaultExpandAll: !0 },
-      d = {
+      u = {
         name: 'App',
         components: { InfiniteTree: s['a'] },
         data: function () {
@@ -263,22 +322,22 @@
               ))
         },
         mounted: function () {
-          this.treeData = l['a'].apply(void 0, Object(r['a'])(this.mockConfig))
+          this.treeData = l
         },
         methods: {
           handleDataMock: function () {
-            this.treeData = l['a'].apply(
+            this.treeData = d['a'].apply(
               void 0,
               Object(r['a'])(this.mockConfig)
             )
           }
         }
       },
-      u = d,
-      h = (n('d57b'), n('2877')),
-      f = Object(h['a'])(u, i, o, !1, null, '87bb9dc4', null),
-      p = f.exports,
-      v =
+      h = u,
+      f = (n('2570'), n('2877')),
+      p = Object(f['a'])(h, i, o, !1, null, '2415745e', null),
+      v = p.exports,
+      g =
         (n('f5fa'),
         function () {
           var e = this,
@@ -306,7 +365,7 @@
           )
         }),
       m = [],
-      g = {
+      N = {
         name: 'XInput',
         props: {
           value: { type: String, default: '' },
@@ -344,10 +403,10 @@
           }
         }
       },
-      N = g,
-      b = (n('8191'), Object(h['a'])(N, v, m, !1, null, '0e290ff5', null)),
-      k = b.exports,
-      _ = function () {
+      b = N,
+      y = (n('8191'), Object(f['a'])(b, g, m, !1, null, '0e290ff5', null)),
+      k = y.exports,
+      C = function () {
         var e = this,
           t = e.$createElement,
           n = e._self._c || t
@@ -366,8 +425,8 @@
           [e._v(' ' + e._s(e.title) + ' ')]
         )
       },
-      C = [],
-      y = {
+      D = [],
+      _ = {
         name: 'XButton',
         props: { title: { type: String, default: 'button' } },
         methods: {
@@ -376,9 +435,9 @@
           }
         }
       },
-      w = y,
-      S = (n('fb62'), Object(h['a'])(w, _, C, !1, null, '5c0f35ec', null)),
-      x = S.exports,
+      w = _,
+      x = (n('fb62'), Object(f['a'])(w, C, D, !1, null, '5c0f35ec', null)),
+      S = x.exports,
       O = function () {
         var e = this,
           t = e.$createElement,
@@ -397,7 +456,7 @@
           )
         )
       },
-      D = [],
+      I = [],
       L = {
         name: 'XSwitch',
         props: { value: { type: Boolean, default: !1 } },
@@ -424,16 +483,16 @@
           }
         }
       },
-      P = L,
-      j = (n('f69f'), Object(h['a'])(P, O, D, !1, null, '0a8d3964', null)),
-      E = j.exports
+      E = L,
+      P = (n('f69f'), Object(f['a'])(E, O, I, !1, null, '0a8d3964', null)),
+      R = P.exports
     a['a'].component('x-input', k),
-      a['a'].component('x-button', x),
-      a['a'].component('x-switch', E),
+      a['a'].component('x-button', S),
+      a['a'].component('x-switch', R),
       (a['a'].config.productionTip = !1),
       new a['a']({
         render: function (e) {
-          return e(p)
+          return e(v)
         }
       }).$mount('#app')
   },
@@ -459,41 +518,66 @@
                 style: {
                   position: 'relative',
                   height: e.totalNodeList.length * e.treeNodeHeight + 'px'
+                },
+                on: {
+                  dragover: e.onDragOver,
+                  dragleave: e.onDragLeave,
+                  drop: e.onDragDrop
                 }
               },
-              e._l(e.shouldRenderNodeList, function (t, a) {
-                return n(
-                  'tree-node',
-                  e._b(
-                    {
-                      key: t.id,
-                      attrs: {
-                        treeNode: t,
-                        tabSize: e.tabSize,
-                        translateY:
-                          (e.renderNodePosRange[0] + a) * e.treeNodeHeight,
-                        isNodeFocus: e.focusNode && t.id === e.focusNode.id
-                      },
-                      on: {
-                        setFocusNode: e.handleSetFocusNode,
-                        'vit-changeNode': e.handleChangeNode,
-                        'vit-selectNode': e.handleSelectNode,
-                        'vit-openNode': e.handleOpenNode
-                      }
-                    },
+              [
+                e._l(e.shouldRenderNodeList, function (t, a) {
+                  return n(
                     'tree-node',
-                    { checkable: e.checkable },
-                    !1
+                    e._b(
+                      {
+                        key: t.id,
+                        attrs: {
+                          index: e.renderNodePosRange[0] + a,
+                          treeNode: t,
+                          tabSize: e.tabSize,
+                          translateY:
+                            (e.renderNodePosRange[0] + a) * e.treeNodeHeight,
+                          isNodeFocus: e.focusNode && t.id === e.focusNode.id,
+                          isDragOver:
+                            t.id === e.dragOverNodeId &&
+                            t.id !== e.dragNodeInfo.id,
+                          onNodeContentDragStart: e.onNodeContentDragStart,
+                          onNodeContentDragEnd: e.onNodeContentDragEnd
+                        },
+                        on: {
+                          setFocusNode: e.handleSetFocusNode,
+                          'vit-changeNode': e.handleChangeNode,
+                          'vit-selectNode': e.handleSelectNode,
+                          'vit-openNode': e.handleOpenNode
+                        }
+                      },
+                      'tree-node',
+                      { checkable: e.checkable },
+                      !1
+                    )
                   )
-                )
-              }),
-              1
+                }),
+                n('div', {
+                  directives: [
+                    {
+                      name: 'show',
+                      rawName: 'v-show',
+                      value: e.showDropIndicator,
+                      expression: 'showDropIndicator'
+                    }
+                  ],
+                  ref: 'vit-drop-indicator',
+                  staticClass: 'vit__drop-indicator'
+                })
+              ],
+              2
             )
           ]
         )
       },
       i = [],
-      o = (n('fb6a'), n('a434'), n('b0c0'), n('2909')),
+      o = (n('cb29'), n('fb6a'), n('a434'), n('b0c0'), n('2909')),
       r =
         (n('f294'),
         function () {
@@ -502,11 +586,7 @@
             n = e._self._c || t
           return n(
             'div',
-            {
-              staticClass: 'vit-node-wrapper',
-              style: e.nodeStyle,
-              attrs: { draggable: '' }
-            },
+            { staticClass: 'vit-node-wrapper', style: e.nodeStyle },
             [
               n('span', {
                 staticClass: 'vit-node-arrow',
@@ -523,10 +603,13 @@
               e.checkable
                 ? n('span', {
                     staticClass: 'vit-node-checkbox',
-                    class: { checked: e.treeNode.state.selected },
+                    class: {
+                      checked: e.treeNode.state.selected,
+                      'checkbox-disabled': e.treeNode.state.disableCheckbox
+                    },
                     on: {
                       click: function (t) {
-                        return t.stopPropagation(), e.onSelectNode(t)
+                        return t.stopPropagation(), e.onCheckNode(t)
                       }
                     }
                   })
@@ -534,31 +617,53 @@
               n(
                 'span',
                 {
+                  ref: 'vit-node-content',
                   staticClass: 'vit-node-content',
-                  class: { 'vit-node-focus': e.isNodeFocus },
-                  on: { click: e.onNodeClick }
+                  class: {
+                    'vit-node-focus': e.isNodeFocus,
+                    'is-drag-over': e.isDragOver
+                  },
+                  attrs: { draggable: '' },
+                  on: {
+                    click: e.onNodeClick,
+                    dragstart: function (t) {
+                      return e.onNodeContentDragStart(e.treeNode.id, e.index)
+                    },
+                    dragend: function (t) {
+                      return e.onNodeContentDragEnd()
+                    }
+                  }
                 },
                 [
-                  n('span', { on: { blur: e.onNodeBlur } }, [
-                    e._v(e._s(e.treeNode.name))
-                  ])
+                  n(
+                    'span',
+                    {
+                      attrs: { draggable: 'false' },
+                      on: { blur: e.onNodeBlur }
+                    },
+                    [e._v(e._s(e.treeNode.name))]
+                  )
                 ]
               )
             ]
           )
         }),
-      l = [],
-      s =
+      d = [],
+      l =
         (n('13d5'),
         n('a9e3'),
         {
           name: 'TreeNode',
           props: {
+            index: { type: Number, default: -1 },
             treeNode: { type: Object, default: function () {} },
             tabSize: { type: Number, default: 8 },
             translateY: { type: Number, default: 0 },
             isNodeFocus: { type: Boolean, default: !1 },
-            checkable: { type: Boolean, default: !1 }
+            checkable: { type: Boolean, default: !1 },
+            isDragOver: { type: Boolean, default: !1 },
+            onNodeContentDragStart: { type: Function, default: function () {} },
+            onNodeContentDragEnd: { type: Function, default: function () {} }
           },
           data: function () {
             return {}
@@ -581,12 +686,13 @@
               !this.treeNode.isLeaf &&
                 this.$emit('vit-openNode', this.treeNode.path)
             },
-            onSelectNode: function () {
-              this.$emit(
-                'vit-selectNode',
-                this.treeNode.path,
-                !this.treeNode.state.selected
-              )
+            onCheckNode: function () {
+              !this.treeNode.state.disableCheckbox &&
+                this.$emit(
+                  'vit-selectNode',
+                  this.treeNode.path,
+                  !this.treeNode.state.selected
+                )
             },
             onNodeClick: function () {
               var e = this.isNodeFocus ? null : this.treeNode
@@ -602,12 +708,12 @@
             }
           }
         }),
-      c = s,
-      d = n('2877'),
-      u = Object(d['a'])(c, r, l, !1, null, null, null),
+      s = l,
+      c = n('2877'),
+      u = Object(c['a'])(s, r, d, !1, null, null, null),
       h = u.exports,
-      f = (n('99af'), n('4160'), n('159b'), n('5530')),
-      p = function (e, t) {
+      f = (n('99af'), n('4160'), n('caad'), n('2532'), n('159b'), n('5530')),
+      p = function (e) {
         return function () {
           Date.now()
           var t = e.apply(void 0, arguments)
@@ -623,32 +729,71 @@
           n
         )
       },
-      m = function e(t, n) {
-        t.forEach(function (t) {
-          var a = { opened: !!n.defaultExpandAll, selected: !1, disabled: !1 }
-          ;(t.state = a), t.children.length > 0 && e(t.children, n)
-        })
+      g = function (e, t) {
+        var n = [],
+          a = [],
+          i = function (t) {
+            while (t.length > 0) {
+              'children' === t[t.length - 1] && t.pop()
+              var n = v(e, t)
+              if (n.state.opened) break
+              ;(n.state.opened = !0), t.pop()
+            }
+          },
+          r = function e(t, i, r) {
+            t.forEach(function (t, d) {
+              var l = { disabled: !1 }
+              t.children.length > 0
+                ? (r.defaultExpandAll
+                    ? (l.opened = !0)
+                    : r.defaultExpandedKeys.includes(t.id)
+                    ? ((l.opened = !0), n.push(i.slice(0, i.length - 1)))
+                    : (l.opened = !1),
+                  e(
+                    t.children,
+                    [].concat(Object(o['a'])(i), [d, 'children']),
+                    r
+                  ))
+                : (l.opened = !1),
+                r.defaultCheckedKeys.includes(t.id)
+                  ? ((l.selected = !0),
+                    a.push([].concat(Object(o['a'])(i), [d])))
+                  : (l.selected = !1),
+                t.state
+                  ? (t.state = Object(f['a'])(Object(f['a'])({}, t.state), l))
+                  : (t.state = l)
+            })
+          }
+        r(e, [], t)
+        for (var d = 0, l = n; d < l.length; d++) {
+          var s = l[d]
+          i(s)
+        }
+        for (var c = 0, u = a; c < u.length; c++) {
+          var h = u[c]
+          N(v(e, h), 'selected', !0), b(e, h, !0)
+        }
       },
-      g = function (e) {
+      m = function (e) {
         var t = [],
           n = function e(n, a) {
             n.forEach(function (n, i) {
               var r = n.id,
-                l = n.name,
-                s = n.state,
-                c = {
+                d = n.name,
+                l = n.state,
+                s = {
                   id: r,
-                  name: l,
-                  state: s,
+                  name: d,
+                  state: l,
                   path: [].concat(Object(o['a'])(a), [i])
                 }
-              n.children.length > 0 && s.opened
-                ? (t.push(c),
+              n.children.length > 0 && l.opened
+                ? (t.push(s),
                   e(n.children, [].concat(Object(o['a'])(a), [i, 'children'])))
-                : n.children.length > 0 && !s.opened
-                ? t.push(c)
+                : n.children.length > 0 && !l.opened
+                ? t.push(s)
                 : t.push(
-                    Object(f['a'])(Object(f['a'])({}, c), {}, { isLeaf: !0 })
+                    Object(f['a'])(Object(f['a'])({}, s), {}, { isLeaf: !0 })
                   )
             })
           }
@@ -675,15 +820,66 @@
           }
         }
       },
-      k = {
-        getValueFromPath: p(v, 'getValueFromPath'),
-        initNodeInnerState: p(m, 'initNodeInnerState'),
-        treeJson2List: p(g, 'treeJson2List'),
-        setChildrenStatus: p(N, 'setChildrenStatus'),
-        checkAncestorStatus: p(b, 'checkAncestorStatus')
+      y = function (e, t, n, a, i) {
+        for (
+          var o,
+            r = a.slice(0, t[0]).reduce(function (e, t) {
+              return e + t
+            }, 0),
+            d = t[0],
+            l = r;
+          d <= t[1];
+          d++
+        )
+          if (((l += a[d]), l > e.y)) {
+            o = d
+            break
+          }
+        var s =
+          Math.abs(
+            a.slice(0, o).reduce(function (e, t) {
+              return e + t
+            }, 0) - e.y
+          ) / a[o]
+        if (s < 0.25) {
+          var c =
+              a.slice(0, o).reduce(function (e, t) {
+                return e + t
+              }, 0) - 1,
+            u = ((n[o].path.length + 1) / 2) * i
+          return {
+            type: 2,
+            data: { top: c, left: u, targetIndex: o, opt: 'above' }
+          }
+        }
+        if (s > 0.75) {
+          var h,
+            p,
+            v =
+              a.slice(0, o + 1).reduce(function (e, t) {
+                return e + t
+              }, 0) - 1
+          return (
+            n[o + 1] && n[o].path.length < n[o + 1].path.length
+              ? ((h = ((n[o + 1].path.length + 1) / 2) * i),
+                (p = { targetIndex: o + 1, opt: 'above' }))
+              : ((h = ((n[o].path.length + 1) / 2) * i),
+                (p = { targetIndex: o, opt: 'below' })),
+            { type: 2, data: Object(f['a'])({ top: v, left: h }, p) }
+          )
+        }
+        return { type: 1, data: o }
       },
-      _ = n('df9c'),
-      C = {
+      k = {
+        getValueFromPath: p(v),
+        initNodeInnerState: p(g),
+        treeJson2List: p(m),
+        setChildrenStatus: p(N),
+        checkAncestorStatus: p(b),
+        computeDragType: y
+      },
+      C = n('df9c'),
+      D = {
         name: 'InfiniteTree',
         props: {
           value: {
@@ -693,7 +889,19 @@
             }
           },
           checkable: { type: Boolean, default: !1 },
-          defaultExpandAll: { type: Boolean, default: !1 }
+          defaultExpandAll: { type: Boolean, default: !1 },
+          defaultExpandedKeys: {
+            type: Array,
+            default: function () {
+              return []
+            }
+          },
+          defaultCheckedKeys: {
+            type: Array,
+            default: function () {
+              return []
+            }
+          }
         },
         components: { TreeNode: h },
         data: function () {
@@ -702,12 +910,22 @@
             renderNodePosRange: [0, 100],
             focusNode: null,
             tabSize: 24,
-            treeNodeHeight: 28
+            treeNodeHeight: 28,
+            dragResult: null,
+            dragNodeInfo: null
           }
         },
         computed: {
           totalNodeNum: function () {
             return this.totalNodeList.length
+          },
+          dragOverNodeId: function () {
+            return this.dragResult && 1 === this.dragResult.type
+              ? this.totalNodeList[this.dragResult.data].id
+              : null
+          },
+          showDropIndicator: function () {
+            return !(!this.dragResult || 2 !== this.dragResult.type)
           }
         },
         watch: {
@@ -715,16 +933,22 @@
             immediate: !0,
             handler: function (e) {
               var t
-              ;(null === e ||
-              void 0 === e ||
-              null === (t = e[0]) ||
-              void 0 === t
-                ? void 0
-                : t.state) ||
-                k.initNodeInnerState(e, {
-                  defaultExpandAll: this.defaultExpandAll
-                }),
-                (this._treeData = e),
+              ;(
+                null === e ||
+                void 0 === e ||
+                null === (t = e[1]) ||
+                void 0 === t
+                  ? void 0
+                  : t.state
+              )
+                ? (this._treeData = e)
+                : (k.initNodeInnerState(e, {
+                    defaultExpandAll: this.defaultExpandAll,
+                    defaultExpandedKeys: this.defaultExpandedKeys,
+                    defaultCheckedKeys: this.defaultCheckedKeys
+                  }),
+                  (this._treeData = e),
+                  this.makeNewTreeData()),
                 (this.totalNodeList = k.treeJson2List(this._treeData)),
                 this.computeShouldRenderNodeList()
             }
@@ -813,14 +1037,14 @@
             t.splice(
               n + 1,
               0,
-              Object(_['b'])({ name: 'new node', hasState: !0 })
+              Object(C['b'])({ name: 'new node', needAddState: !0 })
             ),
               this.makeNewTreeData()
           },
           handleAddChildrenNode: function (e) {
             var t = k.getValueFromPath(this._treeData, e)
             t.children.unshift(
-              Object(_['b'])({ name: 'new node', hasState: !0 })
+              Object(C['b'])({ name: 'new node', needAddState: !0 })
             ),
               this.makeNewTreeData()
           },
@@ -839,14 +1063,76 @@
               k.checkAncestorStatus(this._treeData, e.slice(0, -1), t),
               this.makeNewTreeData()
           },
-          handleOpenNode: function (e) {
-            var t = k.getValueFromPath(this._treeData, e)
-            ;(t.state.opened = !t.state.opened), this.makeNewTreeData()
+          handleOpenNode: function (e, t) {
+            var n = k.getValueFromPath(this._treeData, e)
+            ;(n.state.opened = t ? t.opened : !n.state.opened),
+              this.makeNewTreeData()
+          },
+          onNodeContentDragStart: function (e, t) {
+            ;(this.dragNodeInfo = { id: e, index: t }),
+              this.handleOpenNode(this.totalNodeList[t].path, { opened: !1 })
+          },
+          onNodeContentDragEnd: function () {
+            this.dragNodeInfo = null
+          },
+          onDragOver: function (e) {
+            e.preventDefault()
+            var t = k.computeDragType(
+              { x: e.layerX, y: e.layerY },
+              this.renderNodePosRange,
+              this.totalNodeList,
+              new Array(this.totalNodeList.length).fill(this.treeNodeHeight),
+              this.tabSize
+            )
+            2 === t.type &&
+              ((this.$refs['vit-drop-indicator'].style.top = t.data.top + 'px'),
+              (this.$refs['vit-drop-indicator'].style.left =
+                t.data.left + 'px')),
+              (this.dragResult = t)
+          },
+          onDragLeave: function (e) {
+            this.dragResult = null
+          },
+          onDragDrop: function (e) {
+            if (
+              1 === this.dragResult.type &&
+              this.dragOverNodeId !== this.dragNodeInfo.id
+            ) {
+              var t = this.totalNodeList[this.dragResult.data].path,
+                n = k.getValueFromPath(this._treeData, t),
+                a = this.totalNodeList[this.dragNodeInfo.index].path,
+                i = k.getValueFromPath(this._treeData, a),
+                o = k.getValueFromPath(this._treeData, a.slice(0, -1)),
+                r = a[a.length - 1]
+              o.splice(r, 1),
+                n.children || (n.children = []),
+                n.children.push(i),
+                (n.state.opened = !0),
+                this.makeNewTreeData()
+            } else if (
+              2 === this.dragResult.type &&
+              this.totalNodeList[this.dragResult.data.targetIndex].id !==
+                this.dragNodeInfo.id
+            ) {
+              var d = this.totalNodeList[this.dragResult.data.targetIndex].path,
+                l = k.getValueFromPath(this._treeData, d.slice(0, -1)),
+                s = this.totalNodeList[this.dragNodeInfo.index].path,
+                c = k.getValueFromPath(this._treeData, s),
+                u = k.getValueFromPath(this._treeData, s.slice(0, -1)),
+                h = d[d.length - 1]
+              'above' === this.dragResult.data.opt
+                ? l.splice(h, 0, c)
+                : l.splice(h + 1, 0, c)
+              var f = s[s.length - 1]
+              u === l && f > h ? u.splice(f + 1, 1) : u.splice(f, 1),
+                this.makeNewTreeData()
+            }
+            this.dragResult = null
           }
         }
       },
-      y = C,
-      w = Object(d['a'])(y, a, i, !1, null, null, null)
+      _ = D,
+      w = Object(c['a'])(_, a, i, !1, null, null, null)
     t['a'] = w.exports
   },
   '7d04': function (e, t, n) {},
@@ -856,14 +1142,8 @@
       i = n.n(a)
     i.a
   },
-  '8b84': function (e, t, n) {},
+  b5ab: function (e, t, n) {},
   bce3: function (e, t, n) {},
-  d57b: function (e, t, n) {
-    'use strict'
-    var a = n('8b84'),
-      i = n.n(a)
-    i.a
-  },
   df9c: function (e, t, n) {
     'use strict'
     n.d(t, 'b', function () {
@@ -872,15 +1152,16 @@
       n.d(t, 'a', function () {
         return r
       })
-    n('cb29'), n('d81d'), n('b0c0')
+    n('b0c0')
     var a = n('11c1'),
       i = n.n(a),
       o = function () {
         var e =
             arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : {},
-          t = { id: i()(), name: e.name || Math.random(0, 255), children: [] }
+          t = { id: i()(), name: e.name || 256 * Math.random(), children: [] }
         return (
-          e.hasState && (t.state = { opened: !0, disabled: !1, selected: !1 }),
+          e.needAddState &&
+            (t.state = { opened: !0, disabled: !1, selected: !1 }),
           t
         )
       },
@@ -892,11 +1173,11 @@
           if (a) {
             var i = o(),
               r = Math.floor(Math.random() * t) + 1,
-              l = i.children
+              d = i.children
             r = r > e ? e : r
-            for (var s = r - 1; s > 0; s--) {
-              var c = o()
-              l.push(c), (l = c.children)
+            for (var l = r - 1; l > 0; l--) {
+              var s = o()
+              d.push(s), (d = s.children)
             }
             n.push(i), (e -= r)
           } else n.push(o()), (e -= 1)
